@@ -2,9 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>对象方法练习</title>
 </head>
 <body>
-$END$
+<script>
+    //3.找到数组中每个字母出现的次数["c","a","z","a","a"]
+    var arr3 = ["c","a","z","a","a"];
+    /*var arr3_1=arr3.map(function (ele, index, arr3) {
+     if(ele==="a"){
+     var a=0;
+     a++;
+     }
+     else if (
+
+     )
+     })*/
+    //用对象，利用键值对比较方便
+    //思路：创建一个对象，判断数组中的元素是否存在，若存在+1
+    var json = {};
+    for(var i=0;i<arr3.length;i++){
+        if(json[arr3[i]]){
+            json[arr3[i]] +=1;
+        }else{
+            json[arr3[i]]=1;
+        }
+    }
+    console.log(json);
+
+    //5.编写一个方法，删除数组中重复元素
+    //创建新数组，添加没有的值
+    var arr5=[1,2,3,4,5,2,3,4];
+    var aaa=fn(arr5);
+    console.log(aaa);
+
+    function fn(array) {
+        var newarray = [];
+        for (var i=0;i<array.length;i++){
+            var bool=true;
+            for(var j=0;j<newarray.length;j++){
+                if(array[i] === newarray[j]){
+                    bool = false;
+                }
+            }
+            if(bool){
+                newarray[newarray.length]=array[i];
+            }
+        }
+        return newarray;
+    }
+
+</script>
+
 </body>
 </html>
