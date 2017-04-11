@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>recursion</title>
+</head>
+<body>
+<script>
+    //利用递归计算1~100
+    num=0;
+    var t=getsum(3);
+    console.log(t);
+
+    function getsum(n){
+        if(n===1){
+            return 1;
+        }
+        else{
+            var num=n+getsum(n-1);
+            return num;
+        }
+    }
+    //note：注意不同调用时候的返回值，返回值决定计算的不同
+
+</script>
+
+</body>
+</html>

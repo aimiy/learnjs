@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reverse</title>
+</head>
+<body>
+<script>
+    var arr =[1,2,3,4,5];
+    var arr1 =reverse1(arr);
+    var arr2 =reverse2(arr);
+    console.log(arr1);
+    console.log(arr2);
+    console.log(reverse1(arr));
+    console.log(reverse2(arr));
+    //创建新数据组的办法翻转数组
+    function reverse1(array){
+        var newarray = [];
+        for(var i=0;i<=array.length;i++){
+            newarray[array.length-i-1]=array[i];
+        }
+        return newarray;
+    }
+
+    //改变原数组的办法翻转数组
+    function reverse2(array){
+        for(var i=0;i<array.length/2;i++){
+            var temp =array[i];
+            array[i]=array[array.length-i-1];
+            array[array.length-i-1]=temp;
+        }
+        return array;//可以不写返回值，直接返回array
+    }
+
+</script>
+
+</body>
+</html>
