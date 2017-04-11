@@ -9,30 +9,42 @@
     //1.将一个字符串数组输出为|分割的形式，比如“刘备|张飞|关羽”。使用两种方式实现
 
     var arr1=["刘备","张飞","关羽"];
-
+    //1
     var arr1_1=arr1.join("|");
     console.log(arr1_1);
-
-    var arr1_2=arr1.map(function (ele, index, arr1) {
-        return ele+="|";
-    });
-    for(var i=0;i<arr1_2.length;i++){
-        console.log(arr1_2[i]);
+    //2
+    for (var i=0;i<arr1.length-1;i++){
+        arr1[i]+="|";
     }
+    var str=arr1[0];
+    for(var i=1;i<arr1.length;i++){
+        str+=arr1[i];
+    }
+    console.log(str);
 
     //2.将一个字符串数组的元素的顺序进行反转。["a","b","c","d"] ["d","c","b","a"]。
     // 使用两种种方式实现。提示：第i个和第length-i-1个进行交换
     var arr2=["a","b","c","d"];
-
+    //1
     var arr2_1=arr2.reverse();
     console.log(arr2_1);
+    //2
+    for (var i=0;i<arr2.length;i++){
+        temp=arr2[i];
+        arr2[i]=arr2[arr2.length-i-1];
+        arr2[arr2.length-i-1]=temp;
+    }
+    console.log(arr2);
 
-    var
-
-
-
-    //3.找到数组中每个字母出现的次数["c","a","z","a","a"]
     //4.工资的数组[1500,1200,2000,2100,1800],把工资超过2000的删除
+    var arr4=[1500,1200,2000,2100,1800];
+    var arr4_1=arr4.filter(function (ele, index, arr4) {
+        if (ele<=2000){
+            return true;
+        }
+        else return false;
+    })
+    console.log(arr4_1);
 </script>
 
 </body>
