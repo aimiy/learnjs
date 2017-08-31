@@ -32,7 +32,21 @@ $.ajax({
   url: url,
   method: 'GET',
 }).done(function(result) {
-  console.log(result);
+
+  
+  console.log(result.response.docs[0].snippet);
+  var news = result.response.docs;
+  console.log(news);
+
+  for (var i =0;i<news.length;i++){
+    var newsList = '<li class="article-list">';
+    newsList += news[i].snippet;
+    newsList += '</li>';    
+    $("#nytimes-articles").append(news[i].snippet);
+  }
+  
+
+
 }).fail(function(err) {
   throw err;
 });
