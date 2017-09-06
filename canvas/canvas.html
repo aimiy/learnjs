@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="c" width="200" height="200"></canvas>
+		<script>
+			var c = document.querySelector("#c");
+			var ctx = c.getContext("2d");
+//			放入一张图片
+			var image = new Image();
+			image.onload = function() {
+				console.log("Loaded image");
+//				ctx.drawImage(image,0,0,c.width,c.height);
+				var savedImage = c.toDataURL();
+				window.open(savedImage);
+			}
+			image.src = "p.png";
+
+////画图形
+////ctx.rotate(12);//旋转
+//ctx.strokeStyle = "red";
+//ctx.strokeRect(50,50,100,100);
+//ctx.beginPath();
+//ctx.moveTo(75,75);
+//ctx.lineTo(125,75);
+//ctx.lineTo(125,125);
+////ctx.lineTo(75,75);//可以不画
+//ctx.fillStyle = "aqua";
+//ctx.fill();
+//
+////加入文字
+//ctx.font = "30px serif";
+//ctx.strokeText("stroke",100,10);
+//ctx.font = "30px serif";
+//ctx.textBaseline = "middle";
+//ctx.fillText("Hello",50,40);
+//
+//ctx.font = "36px impact";
+//ctx.textAlign = "center";
+//ctx.fillStyle = "white";
+//ctx.fillText("CANVAS MEMES",c.width/2,180);
+//ctx.strokeStyle = "black";
+//ctx.lineWidth = 3;
+//ctx.strokeText("CANVAS MEMES",c.width/2,180);
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
