@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>MemeMaker</title>
-		<meta name="viewport" content="width=device_width,initial=scale" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<script type="text/javascript">
-		</script>
-		<style type="text/css">
-			#image-container {
-				display: flex;
-			}
-		</style>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>MemeMaker</title>
+	<meta name="viewport" content="width=device_width,initial=scale" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<script type="text/javascript">
+	</script>
+	<style type="text/css">
+	#image-container {
+		display: flex;
+	}
+	#result{
+		width: 200px;
+		height: 200px;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+</style>
+</head>
 
-	<body>
+<body>
+	<div>
+		<input type="file" id="file" />
+	</div>
+	<div id="image-container">
+		<canvas width="197" height="161"></canvas>
 		<div>
-			<input type="file" id="file" />
+			<span>Top Line:</span><br />
+			<input type="text" id="topLineText" /><br />
+			<span>Bottom Line:</span><br />
+			<input type="text" id="bottomLineText" />
+			<button id="saveBtn">Save</button>
 		</div>
-		<div id="image-container">
-			<canvas width="197" height="161"></canvas>
-			<div>
-				<span>Top Line:</span><br />
-				<input type="text" id="topLineText" /><br />
-				<span>Bottom Line:</span><br />
-				<input type="text" id="bottomLineText" />
-				<button id="saveBtn">Save</button>
-			</div>
-		</div>
-		<script type="text/javascript">
-			function textChangeListener(evt) {
-				var id = evt.target.id;
-				var text = evt.target.value;
+	</div>
+	<div id="result">
 
-				if(id == "topLineText") {
-					window.topLineText = text;
-					console.log(topLineText);
-				} else {
-					window.bottomLineText = text;
-					console.log(bottomLineText);
-				}
+	</div>
+	<script type="text/javascript">
+		//监听文字输入，两个一起监听
+		function textChangeListener(evt) {
+			var id = evt.target.id;
+			var text = evt.target.value;
 
-				redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
+			if(id == "topLineText") {
+				window.topLineText = text;
+			} else {
+				window.bottomLineText = text;
 			}
 
-			function redrawMeme(image, topLine, bottomLine) {
-				var canvas = document.querySelector('canvas');
-				var ctx = canvas.getContext("2d");
-				//code
+			redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
+		}
+		//绘制canvas
+		function redrawMeme(image, topLine, bottomLine) {
+			var canvas = document.querySelector('canvas');
+			var ctx = canvas.getContext("2d");
+				//擦出画布
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				if(window.imageSrc != null) {
 					ctx.drawImage(imageSrc, 0, 0, canvas.width, canvas.height);
 				}
 				ctx.font = "36px impact";
-					ctx.textAlign = "center";
-					ctx.strokeStyle = "black";
-					ctx.lineWidth = 3;
-					ctx.fillStyle = "white";
+				ctx.textAlign = "center";
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.fillStyle = "white";
 				
 				if(topLineText != ''){
 					ctx.fillText(topLineText,canvas.width/2,40);
@@ -70,30 +78,48 @@
 				}
 
 			}
+			//convertBase64UrlToBlob函数将图片的Base64编码转化为blob文件对象
+			function convertBase64UrlToBlob(urlData,type){
+    			var bytes=window.atob(urlData.split(',')[1]);//去掉url的头，并转换为byte
+    			//处理异常,将ascii码小于0的转换为大于0
+    			var ab = new ArrayBuffer(bytes.length);
+    			var ia = new Uint8Array(ab);
+    			for (var i = 0; i < bytes.length; i++) {
+    				ia[i] = bytes.charCodeAt(i);
+    			}
+    			return new Blob( [ab] , {type : 'image/'+type});
+    		}
 
-			function saveFile() {
-				window.open(document.querySelector('canvas').toDataURL());
+    		function saveFile() {
+				// window.open(document.querySelector('canvas').toDataURL());
+				var dataURL = document.querySelector('canvas').toDataURL();
+				// console.log(dataURL);
+				var res = document.querySelector('#result');
+				res.style.background = "url(" + dataURL + ")";
+				window.open(dataURL);
 			}
-
+			//处理文件选择事件
 			function handleFileSelect(evt) {
-				var canvasWidth = 197;
-				var canvasHeight = 161;
+				
+				//获取上传的文件对象
 				var file = evt.target.files[0];
-				console.log(file);
-
+				// console.log(file);
+				// FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据
 				var reader = new FileReader();
 				reader.onload = function(fileObject) {
+					//获取图片对象
 					var data = fileObject.target.result;
-
 					var image = new Image();
 					image.onload = function() {
-//						console.log(this);
-
+						document.querySelector('canvas').width = this.width;
+						document.querySelector('canvas').height = this.height;
+						document.querySelector('#result').style.width = this.width + "px";
+						document.querySelector('#result').style.height = this.height + "px";
 						window.imageSrc = this;
 						redrawMeme(window.imageSrc, null, null);
 					}
 					image.src = data;
-					//					console.log(fileObject.target.result);
+					//console.log(fileObject.target.result);
 				};
 				reader.readAsDataURL(file);
 			}
@@ -110,4 +136,4 @@
 		</script>
 	</body>
 
-</html>
+	</html>
