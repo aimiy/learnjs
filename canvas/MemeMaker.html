@@ -34,6 +34,7 @@
 			<span>Bottom Line:</span><br />
 			<input type="text" id="bottomLineText" />
 			<button id="saveBtn">Save</button>
+			<a href="" id="a">dianji</a>
 		</div>
 	</div>
 	<div id="result">
@@ -79,24 +80,38 @@
 
 			}
 			//convertBase64UrlToBlob函数将图片的Base64编码转化为blob文件对象
-			function convertBase64UrlToBlob(urlData,type){
-    			var bytes=window.atob(urlData.split(',')[1]);//去掉url的头，并转换为byte
-    			//处理异常,将ascii码小于0的转换为大于0
-    			var ab = new ArrayBuffer(bytes.length);
-    			var ia = new Uint8Array(ab);
-    			for (var i = 0; i < bytes.length; i++) {
-    				ia[i] = bytes.charCodeAt(i);
-    			}
-    			return new Blob( [ab] , {type : 'image/'+type});
-    		}
+			function base64Img2Blob(code){
+                var parts = code.split(';base64,');
+                var contentType = parts[0].split(':')[1];
+                var raw = window.atob(parts[1]);
+                var rawLength = raw.length;
+
+                var uInt8Array = new Uint8Array(rawLength);
+
+                for (var i = 0; i < rawLength; ++i) {
+                  uInt8Array[i] = raw.charCodeAt(i);
+                }
+
+                return new Blob([uInt8Array], {type: contentType}); 
+            }
 
     		function saveFile() {
 				// window.open(document.querySelector('canvas').toDataURL());
-				var dataURL = document.querySelector('canvas').toDataURL();
-				// console.log(dataURL);
-				var res = document.querySelector('#result');
-				res.style.background = "url(" + dataURL + ")";
-				window.open(dataURL);
+				var content = document.querySelector('canvas').toDataURL("image/png");
+				var aLink = document.createElement('a');
+				
+				var res = document.querySelector("#result");
+                var blob = base64Img2Blob(content); //new Blob([content]);
+
+              	res.appendchild(aLink);
+
+                var evt = document.createEvent("HTMLEvents");
+                evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错
+                aLink.download = "fileName";
+                aLink.href = URL.createObjectURL(blob);
+         		
+         		
+                aLink.dispatchEvent(evt);
 			}
 			//处理文件选择事件
 			function handleFileSelect(evt) {
