@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>video</title>
+</head>
+<body>
+	<video id="v" src="video.mp4" controls loop></video>
+	<canvas id="videoCanvas"></canvas>
+	<script>
+		// var v = document.querySelector("#v");
+		// var canvas = document.querySelector("#videoCanvas");
+		// var ctx = canvas.getContext("2d");
+		
+
+		
+		//DOM树构建完成（DOMContentLoaded）。load是整个页面加载完成，参考页面渲染流程
+		document.addEventListener('DOMContentLoaded',function(){
+			var v = document.querySelector("#v");
+			var canvas = document.querySelector("#videoCanvas");
+			var ctx = canvas.getContext("2d");
+
+			//浏览器已加载声频、视频的元数据时触发的事件(onloadedmetadata)
+			v.addEventListener('loadedmetadata',function(){
+				console.log(this);
+				canvas.width = this.videoWidth;
+				canvas.height = this.videoHeight;
+			});
+			
+			var draw = function(){
+				ctx.drawImage(v,0,0);
+			};
+			//http://www.zhangxinxu.com/wordpress/2013/09/css3-animation-requestanimationframe-tween-%E5%8A%A8%E7%94%BB%E7%AE%97%E6%B3%95/
+			v.addEventListener('play',function(){
+				if (v.paused || v.ended) return;
+
+					draw();
+
+				
+			});
+			
+			
+		});
+	</script>
+	
+</body>
+</html>
