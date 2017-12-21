@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>video</title>
+	<script type="text/javascript" src="js/kibo.js"></script>
+</head>
+<body>
+	<canvas id="videoCanvas" width="800" height="600"></canvas>
+	<script>
+		//DOM树构建完成（DOMContentLoaded）。load是整个页面加载完成，参考页面渲染流程
+		document.addEventListener('DOMContentLoaded',function(){
+			//选择器
+			var canvas = document.querySelector("#videoCanvas");
+			var ctx = canvas.getContext("2d");
+
+			//对象
+			var bear = {
+				x:0,
+				y:0
+			}
+			
+			
+			//具体化的游戏循环可能类似于此
+			var draw = function(){
+				//刷新绘制draw让其与浏览器绘制频率同步，避免浏览器崩溃，也让canvas画面同步刷新绘制
+				requestAnimationFrame(draw);
+				//绘制所有内容
+				drawAllTheThings();
+			};
+
+			var processInput = function(){
+				var k = new Kibo();
+				k.down(['up','w'],function(){
+					console.log('up');		
+					moveObjectsAndEnemies('up',10);
+
+				});
+				k.down(['down','s'],function(){
+					console.log('down');
+					moveObjectsAndEnemies('down',10);
+					
+				});
+				k.up(['enter','q'],function(){
+					console.log('enter');
+				});
+			};
+
+			var moveObjectsAndEnemies = function(direction,distance){
+				if (direction === 'up') {
+					if (bear.y<distance) {
+						return;
+					}
+					bear.y -=distance;
+				}else if(direction === 'down'){
+					if ((bear.y+imageBear.height)>600) {
+						return;
+					}
+					bear.y +=distance;
+				}
+			};
+			
+			var drawAllTheThings = function(){
+				imageBear = new Image();
+				imageBear.src = 'p.png';
+				imageBear.onload = function(){
+					canvas.width = canvas.width;
+					ctx.drawImage(imageBear,bear.x,bear.y,imageBear.width,imageBear.height);
+				}
+			};
+
+			function handleMouseClick(evt){
+				x = evt.clientX - canvas.offsetLeft;
+				y = evt.clientY - canvas.offsetTop;
+				moveObjectsAndEnemies('up',10);
+			}
+			//入口
+			draw();
+			//处理鼠标输入配置
+			processInput();
+			canvas.addEventListener("click",handleMouseClick);
+			
+		});
+	</script>
+	
+</body>
+</html>

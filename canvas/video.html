@@ -3,17 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>video</title>
+	<script type="text/javascript" src="js/kibo.js"></script>
 </head>
 <body>
 	<video id="v" src="video.mp4" controls loop></video>
 	<canvas id="videoCanvas"></canvas>
 	<script>
-		// var v = document.querySelector("#v");
-		// var canvas = document.querySelector("#videoCanvas");
-		// var ctx = canvas.getContext("2d");
-		
-
-		
+		var bear = {
+			x:0,
+			y:0
+		}
 		//DOM树构建完成（DOMContentLoaded）。load是整个页面加载完成，参考页面渲染流程
 		document.addEventListener('DOMContentLoaded',function(){
 			var v = document.querySelector("#v");
@@ -27,19 +26,18 @@
 				canvas.height = this.videoHeight;
 			});
 			
+			//具体化的游戏循环可能类似于此
 			var draw = function(){
+				//绘制视频
 				ctx.drawImage(v,0,0);
+				//刷新绘制draw让其与浏览器绘制频率同步，避免浏览器崩溃，也让canvas画面同步刷新绘制
+				requestAnimationFrame(draw);
 			};
 			//http://www.zhangxinxu.com/wordpress/2013/09/css3-animation-requestanimationframe-tween-%E5%8A%A8%E7%94%BB%E7%AE%97%E6%B3%95/
 			v.addEventListener('play',function(){
 				if (v.paused || v.ended) return;
-
-					draw();
-
-				
+				draw();			
 			});
-			
-			
 		});
 	</script>
 	
