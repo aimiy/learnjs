@@ -40,9 +40,14 @@
 
 		var catsnum = 2;
 
-		function cat(){
-			this.name = '喵';
+		function cat(i){
+			this.name = '喵' +i;
 			this.clickNum = 0;
+			var countUp = (function(clickNumCopy){
+				clickNumCopy++;
+				
+			})(this.clickNum);
+			
 
 			var name = document.createElement('div');
 			name.className = "name";
@@ -52,10 +57,10 @@
 			var img = document.createElement("img");
 			img.className = "catimg";
 			img.src = "images/cat.jpg";
-			img.addEventListener('click', function(){
-					this.clickNum++;
-					console.log(this.clickNum);
-				});
+			img.className += (" "+i.toString());
+			img.addEventListener('click',(function(clickNumCopy){
+				return countUp();
+			})(this.clickNum));
 			cats.appendChild(img);
 
 			var count = document.createElement('div');
@@ -64,8 +69,11 @@
 			cats.appendChild(count);
 		};
 
+		
+
 		for(var i=0;i<catsnum;i++){
-			new cat();
+			new cat(i);
+			// var cat = document.querySelector(i.toString());
 		}
 	</script>
 </body>
