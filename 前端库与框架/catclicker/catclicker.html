@@ -4,48 +4,136 @@
 	<meta charset="UTF-8">
 	<title>设计模式</title>
 	<style>
-	img{
+	img,ul{
 		margin: 0;
-		padding: 0
+		padding: 0;
 	}
-	.name{
+	img{
+		cursor: pointer;
+	}
+	body{
+		display: flex;
+	}
+	#cat-list{
+		/*width: 50px;*/
+		cursor: pointer;
+		list-style: none;
+	}
+	#cat-list li{
+		margin: 5px 0 5px 0;
+    padding: 6px 55px;
+    border: solid 1px #cecece;
+    text-align: center;
+	}
+	#cat{
+		padding: 0 0 0 50px;
+	}
+	#cat-name{
 		font-size: 16px;
 		color:#cecece;
 	}
-	.catimg{
+	#cat-img{
 		width: 50px;
 		height: auto;
 	}
-	.count{
+	#cat-num{
 		font-size: 16px;
 		color:#cecece;
 	}
 </style>
 </head>
 <body>
-	<div class="cats">
-
+	<ul id="cat-list"></ul>
+	<div id="cat">
+		<h2 id="cat-name"></h2>
+		<img id="cat-img" src="" alt="">
+		<p>点击数：<div id="cat-num"></div></p>
 	</div>
+
 	<script src="../jquery-3.2.1.min.js"></script>
 	<script>
 		$(function(){
 			var model = {
-				init:function(){
-
+				currentCat:null,
+				cats:[{
+					name:'11',
+					clickNum:0,
+					imgsrc:'images/cat.jpg'
 				},
+				{
+					name:'22',
+					clickNum:0,
+					imgsrc:'images/cat.jpg'
+				},{
+					name:'33',
+					clickNum:0,
+					imgsrc:'images/cat.jpg'
+				},{
+					name:'44',
+					clickNum:0,
+					imgsrc:'images/cat.jpg'
+				}]
 			};
 
-			var octopus = {};
-
-			var viewlist = {
+			var octopus = {
 				init:function(){
+					model.currentCat = model.cats[0];
+					
+					catview.init();
+					listview.init();
+				},
+				setcurrentcat:function(cat){
+					model.currentCat = cat;
+				},
+				addcurrentnum:function(){
+					model.currentCat.clickNum++;
+					catview.render();
+				}
+			};
 
+			var listview = {
+				init:function(){
+					var catList = document.querySelector("#cat-list");
+
+					for(var i = 0;i<model.cats.length;i++){
+						var elem = document.createElement("li");
+						var cat = model.cats[i];
+						
+						elem.innerHTML = cat.name;
+						elem.addEventListener('click',(function(cat){
+							return function(){
+								octopus.setcurrentcat(cat);
+								catview.render();
+							};
+						})(cat));
+						console.log(elem);
+						catList.appendChild(elem);
+					}
 				},
 			};
-			var viewcat = {};
+			var catview = {
+				init:function(){
+					this.catName = document.querySelector("#cat-name");
+					this.catImg = document.querySelector("#cat-img");
+					this.catNum = document.querySelector("#cat-num");
+
+					this.catImg.addEventListener('click',function(){
+						octopus.addcurrentnum();
+					});
+
+					this.render();
+				},
+				render:function(){
+					this.catName.innerHTML = model.currentCat.name;
+					this.catImg.src = model.currentCat.imgsrc;
+					this.catNum.innerHTML = model.currentCat.clickNum;
+				}
+			};
+
+			octopus.init();
 		});
 	</script>
-	<script>
+	<!-- <script>
 
 
 
@@ -88,6 +176,6 @@
 			new cat(i);
 			// var cat = document.querySelector(i.toString());
 		}
-	</script>
+	</script> -->
 </body>
 </html>

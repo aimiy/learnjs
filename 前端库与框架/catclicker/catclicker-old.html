@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设计模式</title>
+	<style>
+	img{
+		margin: 0;
+		padding: 0
+	}
+	#cat-list{
+		float: right;
+		width: 50px;
+		background: yellow;
+		cursor: pointer;
+	}
+	#cat{
+
+	}
+	#cat-name{
+		font-size: 16px;
+		color:#cecece;
+	}
+	#cat-img{
+		width: 50px;
+		height: auto;
+	}
+	#cat-num{
+		font-size: 16px;
+		color:#cecece;
+	}
+</style>
+</head>
+<body>
+	<ul id="cat-list"></ul>
+	<div id="cat">
+		<h2 id="cat-name"></h2>
+		<img id="cat-img" src="" alt="">
+		<p>点击数：<div id="cat-num"></div></p>
+	</div>
+	<script src="../jquery-3.2.1.min.js"></script>
+	<script>
+		var cats = document.querySelector(".cats");
+
+		var catsnum = 2;
+
+		function cat(i){
+			this.name = '喵' +i;
+			this.clickNum = 0;
+			var countUp = (function(clickNumCopy){
+				clickNumCopy++;
+				
+			})(this.clickNum);
+			
+
+			var name = document.createElement('div');
+			name.className = "name";
+			name.innerHTML = '名字：' + this.name;
+			cats.appendChild(name);
+
+			var img = document.createElement("img");
+			img.className = "catimg";
+			img.src = "images/cat.jpg";
+			img.className += (" "+i.toString());
+			img.addEventListener('click',(function(clickNumCopy){
+				return countUp();
+			})(this.clickNum));
+			cats.appendChild(img);
+
+			var count = document.createElement('div');
+			count.className = "count";
+			count.innerHTML = '点击数：' + this.clickNum;
+			cats.appendChild(count);
+		};
+
+		
+
+		for(var i=0;i<catsnum;i++){
+			new cat(i);
+			// var cat = document.querySelector(i.toString());
+		}
+	</script>
+</body>
+</html>
