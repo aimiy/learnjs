@@ -1,5 +1,6 @@
 // webpack.config.js
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -13,7 +14,7 @@ module.exports = {
     contentBase: "./public",//本地服务器所加载的页面所在的目录
     historyApiFallback: true,//不跳转
     inline: true,//实时刷新
-    port:80,//默认监听端口
+    port:8080,//默认监听端口
   },
   module: {
     rules: [
@@ -43,6 +44,9 @@ module.exports = {
         ]
       },
       plugins:[
-        new webpack.BannerPlugin('版权所有，翻版必究')
+        new webpack.BannerPlugin('作者：fym\n版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+          template:__dirname + "/app/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
+        })
       ],
     };
