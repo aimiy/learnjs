@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <meta http-equiv="refresh" content="10" url="file:///D:/git/learnhtmlcss/h5%E5%AD%98%E5%82%A8/storage.html"> -->
+	<title>storage</title>
+	<style>
+	nav span{
+		display: inline-block;
+		width: 300px;
+		height: 30px;
+		color: #fff;
+		background-color: #000;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 30px
+	}
+	.box{
+		width: 299px;
+		border:1px solid #ccc;
+		float: left;
+	}
+	.box p{
+		height: 30px;
+	}
+	.box label{
+		padding-right: 50px;
+	}
+	button{
+		border-radius: 8px;
+		height: 25px;
+	}
+
+	</style>
+</head>
+<body>
+<nav><span>存储网站</span><span>搜索网站</span></nav>
+<div class="box" id="save">
+
+<form action="">
+<p><label for="sitename">输入名称：</label><input id="sitename" type="text"></p>
+<p><label for="siteurl">输入网址：</label><input id="siteurl" type="text"></p>
+<button onclick="save()">点击存储</button>
+</form>
+
+<div class="list" id="list">
+<table>
+<tr>
+<td><label>123</label>www.456</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+<div class="box" id="search">
+<form action="">
+<p><label for="searchname">输入名称：</label><input id="searchname" type="text"></p>
+<button onclick="search()">点击搜索</button>
+</form>
+您搜索的网址为：<p id="searchresult">654654</p>
+</div>
+
+<script>
+
+
+
+
+function save(){
+	var sitename = document.getElementById("sitename").value;
+	var siteurl = document.getElementById("siteurl").value;
+	localStorage.setItem(sitename,siteurl);
+	init();
+}
+function search(){
+	var searchname = document.getElementById("searchname").value;
+	var searchresult = document.getElementById("searchresult");
+	var searchurl = localStorage.getItem("searchname");
+	searchresult.innerHTML = searchurl;
+}
+function init(){
+	var list = document.getElementById("list");
+	if (localStorage.length>0) {
+		var result = "<table>";
+		for(var i=0;i<localStorage.length;i++){
+			var sname = localStorage.key(i);
+			var surl = localStorage.getItem(sname);
+			result +="<tr><td><label>"+sname+"</label>"+surl+"</td></tr>";
+		}
+		result += "</table>";
+		list.innerHTML = result;
+	}else{
+		alert("暂无存储");
+	}
+}
+init();
+</script>
+	
+</body>
+</html>

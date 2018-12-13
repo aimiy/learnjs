@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<p>获取地理位置</p>
+<p id="demo"></p>
+<button onclick="getLocation()">点击获取位置</button>
+<script>
+var x = document.getElementById("demo");
+function getLocation(){
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPositon);
+	}else{
+		x.innerHTML = "不支持获取本地位置";
+	}
+}
+function showPositon(positon){
+	x.innerHTML = "纬度：" + positon.coords.latitude + "<br>经度：" + positon.coords.longitude;
+}
+</script>
+	
+</body>
+</html>
