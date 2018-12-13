@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            display: none;
+        }
+    </style>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $("button:eq(0)").click(function () {
+                $("div").show(2000,function () {
+                    console.log("xianshi");
+                });
+            })
+            $("button:eq(1)").click(function () {
+                $("div").hide(500,function () {
+                    console.log("yincang");
+                });
+            })
+
+            $("button:eq(2)").click(function () {
+                $("div").toggle(500);
+            })
+        })
+    </script>
+
+</head>
+<body>
+<button>显示</button>
+<button>隐藏</button>
+<button>切换</button>
+<div></div>
+</body>
+</html>

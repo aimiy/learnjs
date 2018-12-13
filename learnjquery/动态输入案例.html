@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态输入</title>
+
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+
+            var str = "1223456";
+            var arr = str.split("");//把字符串分割成字符串数组
+            var num = 0;
+            var xs = "";
+            var timer = null;
+            $(".typed-cursor").show();
+            timer = setInterval(function () {
+                if(arr[num] ===undefined){
+                    $(".typed-cursor").hide();
+                    clearInterval(timer);
+                }else {
+                    xs += arr[num];
+                    $(".word").text(xs);
+                    num++;
+                }
+            },500)
+
+            $("#btnSay").click(function () {
+                var str=$("#inValue").val();
+                var arr = str.split("");//把字符串分割成字符串数组
+                var num = 0;
+                var xs = "";
+                var timer = null;
+                $(".typed-cursor").show();
+                timer = setInterval(function () {
+                    if(arr[num] ===undefined){
+                        $(".typed-cursor").hide();
+                        clearInterval(timer);
+                    }else {
+                        xs += arr[num];
+                        $(".word").text(xs);
+                        num++;
+                    }
+                },500)
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+    <h1>
+        You want to say ： <span class="word"></span><span class="typed-cursor">|</span> ！
+    </h1>
+
+    <div class="say">
+        <input type="text" id="inValue" class="txtSay"/>
+        <input type="button" value="Say" id="btnSay" class="btnSay"/>
+    </div>
+</div>
+</body>
+</html>

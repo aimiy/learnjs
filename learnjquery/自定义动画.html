@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        div{
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+        #eff{
+            background-color: greenyellow;
+        }
+    </style>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="jquery.color.js"></script>
+    <script>
+        $(function () {
+            $("button").click(function () {
+                var json = {"width":500,"height":500,"left":500,"top": 500,"border-radius":200};
+                var json2 = {"width":200,"height":200,"left":200,"top": 200,"border-radius":100,"background-color": "black"};
+
+                //自定义动画
+                $("div").animate(json,1000, function () {
+                    $("div").animate(json2,500, function () {
+                        alert("动画执行完毕！");
+                    });
+                });
+
+                //自定义动画
+//                $("div").animate({"display":"none","opacity":0,"width":0,"height":0},1000);
+//                $("div").animate({"height":0},2000);
+//                $("div").animate({"opacity":0},2000);
+            })
+        })
+    </script>
+</head>
+<body>
+<button>动画</button>
+<div id="eff"></div>
+</body>
+</html>

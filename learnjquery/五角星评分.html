@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评分</title>
+    <style type="text/css">
+        ul{
+            list-style: none;
+        }
+        li{
+            float: left;
+            font-size: 50px;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            var starn = "☆";
+            var stari = "★";
+            $("#star li").mouseenter(function () {
+//                $(this).text(stari);
+//                $(this).prevAll("li").text(stari);
+//                $(this).nextAll("li").text(starn);
+                $(this).text(stari).prevAll("li").text(stari).end().nextAll("li").text(starn);
+            })
+            $("#star li").click(function () {
+                $(this).attr("class","current").siblings("li").removeAttr("class");
+            })
+            $("#star li").mouseleave(function () {
+                if ($("li.current").length === 0){
+                    $(this).parent("ul").children("li").text(starn);
+                }else{
+                    $("li.current").text(stari).prevAll("li").text(stari).end().nextAll("li").text(starn);
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul id="star">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+</div>
+</body>
+</html>

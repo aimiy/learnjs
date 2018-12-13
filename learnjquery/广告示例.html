@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ad</title>
+    <style type="text/css">
+        .box{
+            width: 410px;
+            height: 208px;
+            margin: 0 auto;
+            float: left;
+            overflow: hidden;
+        }
+        #left,#center,#right{
+            padding: 0;
+            list-style: none;
+            float: left;
+        }
+        #left a,#right a{
+            display: inline-block;
+            text-decoration: none;
+            height: 62px;
+            width: 100px;
+            color: black;
+            border: 1px solid #000;
+            background-color: pink;
+        }
+        #center a{
+            display: inline-block;
+            border: 1px solid #000;
+        }
+    </style>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#left>li").mouseenter(function () {
+                var index = $(this).index();
+                $("#center>li").eq(index).show().siblings("li").hide();
+            })
+            $("#right>li").mouseenter(function () {
+                var index = $(this).index();
+                $("#center>li").eq(index+3).show().siblings("li").hide();
+            })
+        })
+
+    </script>
+
+</head>
+<body>
+<div class="box">
+<ul id="left">
+    <li><a href="#">01</a></li>
+    <li><a href="#">02</a></li>
+    <li><a href="#">03</a></li>
+</ul>
+<ul id="center">
+    <li><a href="#"><img src="images/01.jpg" alt=""></a></li>
+    <li><a href="#"><img src="images/02.jpg" alt=""></a></li>
+    <li><a href="#"><img src="images/03.jpg" alt=""></a></li>
+    <li><a href="#"><img src="images/04.jpg" alt=""></a></li>
+    <li><a href="#"><img src="images/05.jpg" alt=""></a></li>
+    <li><a href="#"><img src="images/06.jpg" alt=""></a></li>
+</ul>
+<ul id="right">
+    <li><a href="#">04</a></li>
+    <li><a href="#">05</a></li>
+    <li><a href="#">06</a></li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $("li:odd").css("backgroundColor","red");
+            $("li:even").css("backgroundColor","yellow");
+
+            var temp;//在外面定义为全局
+            $("li").mouseenter(function () {
+                temp = $(this).css("backgroundColor");
+                    $(this).css("backgroundColor","#ccc");
+            })
+            $("li").mouseleave(function () {
+                $(this).css("backgroundColor",temp);
+            })
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+
+        $(function () {
+            $("#jon").click(function () {
+                $("body")[0].style.backgroundColor ="#ccc";
+            });
+
+            $("#jff").click(function () {
+                $("body")[0].style.backgroundColor ="#333";
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<button id="jon">开灯</button>
+<button id="jff">关灯</button>
+<!--<input type="button" id="jon" value="开灯">-->
+<!--<input type="button" id="jff" value="关灯">-->
+
+</body>
+</html>
