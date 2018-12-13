@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>发送get请求的ajax_基础语法</h1>
+<input type="button"  value="发送get_ajax请求" id='btnAjax'>
+<h2>使用get发送数据到服务器</h2>
+<input type="button"  value="发送get_ajax请求" id='btnA'>
+</body>
+</html>
+<!--//get写法-->
+<script type="text/javascript">
+    document.querySelector('#btnAjax').onclick = function () {
+        // 创建XMLHttpRequest 对象
+
+        var xml = new XMLHttpRequest();
+
+        // 设置跟服务端交互的信息
+
+        xml.open('get','php/ajax.php');
+
+        xml.send(null);    // get请求这里写null即可
+
+        // 接收服务器反馈xml.get();
+
+        xml.onreadystatechange = function () {
+
+            // 这步为判断服务器是否正确响应
+
+            if (xml.readyState == 4 && xml.status == 200) {
+
+                // 打印响应内容
+                alert(xml.responseText);
+
+                // 修改页面的显示
+                document.querySelector('h1').innerHTML = xml.responseText;
+            }
+
+        };
+
+    }
+
+    // 绑定点击事件
+    document.querySelector('#btnA').onclick = function () {
+        // 1.创建异步对象
+        var ajaxObj = new XMLHttpRequest();
+
+        // 2.设置请求的url等参数
+        // 参数1 请求的方法 参数2 请求的url
+        // get提交的数据 是直接追加在url的后面 格式是
+        // xxx.php?pass=123
+        // 这只是一个字符串拼接  动态的传递参数
+        // '03.get_senddata.php?userName='+document.querySelector('input').value;
+        ajaxObj.open('get','php/ajax.php?userName=jack');
+
+        // 3.发送请求
+        ajaxObj.send();
+
+        // 假设 有一个 接返回数据的 方法ajaxObj.get();
+
+        // 4.注册事件
+        // onreadystatechange  状态改变就会调用
+        // 如果要在 数据完美请求回来的时候 才调用 我们需要手动的 写一些判断的逻辑
+        ajaxObj.onreadystatechange = function () {
+            // 为了保证 数据 完整回来,我们一般会判断 两个值
+            if (ajaxObj.readyState==4&&ajaxObj.status==200) {
+                // 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
+                // 5.在注册的事件中 获取 返回的 内容 并修改页面的显示
+                console.log('数据完美的回来了');
+
+                // 数据是保存在 异步对象的 属性中
+                console.log(ajaxObj.responseText);
+
+                // 修改页面的显示
+                document.querySelector('h2').innerHTML = ajaxObj.responseText;
+            }
+
+        }
+    }
+
+</script>
+
+
+
+
+
+<!--//post写法-->
+<!--<script type="text/javascript">-->
+
+    <!--// 异步对象-->
+
+    <!--var xhr = new XMLHttpRequest();-->
+
+
+
+    <!--// 设置属性-->
+
+    <!--xhr.open('post', '02.post.php' );-->
+
+
+
+    <!--// 如果想要使用post提交数据,必须添加-->
+
+    <!--xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");-->
+
+
+
+    <!--// 将数据通过send方法传递-->
+
+    <!--xhr.send('name=fox&age=18');-->
+
+
+
+    <!--// 发送并接受返回值-->
+
+    <!--xhr.onreadystatechange = function () {-->
+
+        <!--// 这步为判断服务器是否正确响应-->
+
+        <!--if (xhr.readyState == 4 && xhr.status == 200) {-->
+
+            <!--alert(xhr.responseText);-->
+
+        <!--}-->
+
+    <!--};-->
+
+<!--</script>-->
+
+
+
+
+<!--<script>-->
+    <!--创建XMLHttpRequest对象(兼容性写法)-->
+
+    <!--新版本浏览器:-->
+
+        <!--var xml=new XMLHttpRequest();-->
+    <!--（IE5 和 IE6）-->
+
+    <!--var xml=new ActiveXObject("Microsoft.XMLHTTP");-->
+    <!--考虑兼容性创建Ajax对象-->
+
+    <!--var request ;-->
+
+    <!--if(XMLHttpRequest){-->
+
+<!--// 新式浏览器写法-->
+
+        <!--request = new XMLHttpRequest();-->
+
+    <!--}else{-->
+
+<!--//IE5,IE6写法-->
+
+        <!--new ActiveXObject("Microsoft.XMLHTTP");-->
+
+    <!--}-->
+<!--</script>-->

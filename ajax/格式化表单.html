@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试jq_serialize方法</title>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#getFormInfo").on("click",function(){
+                var info = $("#testForm").serialize();
+                console.log(info);
+            })
+        })
+    </script>
+</head>
+<body>
+<form id="testForm">
+    <input type="text" placeholder="您的姓名" name="userName">
+    <input type="text" placeholder="您的爱好" name="userHabbit">
+    <input type="text" placeholder="您最喜爱的食物" name="userHabbit">
+</form>
+<input type="button" value="格式化表单数据" id="getFormInfo">
+</body>
+</html>

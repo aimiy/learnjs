@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div class="content">
+<p class="p">请点击按钮</p>
+<button class="starBtn" data-number="1">1</button>
+<button class="starBtn" data-number="2">2</button>
+<button class="starBtn" data-number="3">3</button>
+</div>
+<script src="js/ajax_tool.js"></script>
+
+<script>
+
+function postxml(option){
+	var xml = new XMLHttpRequest();
+	xml.open('post',option.url);
+	xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xml.send(option.data);
+	xml.onreadystatechange = function(){
+		if (xml.status==200&&xml.readyState==4){
+			option.success(responseText);
+		}
+
+};
+
+
+var option1 = {
+	url:"php/test.php",
+	data:"button=1",
+	success:function(responseText){
+		console.log(responseText);
+		document.querySelector('.p').innerHTML = xml.responseText;
+	}
+};
+
+postxml(option1);
+ajax_tool(option1);
+
+// var btnarr = document.querySelectorAll('.starBtn');
+// console.log(btnarr);
+// for(var i=0;i<btnarr.length;i++){
+// 	btnarr[i].onclick = function(event){
+
+// 	var xml = new XMLHttpRequest();
+// 	xml.open('post','php/test.php');
+// 	xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+// 	xml.send('button='+this.dataset['number']);
+// 	xml.onreadystatechange = function(){
+// 		if (xml.status==200&&xml.readyState==4){
+// 			console.log(xml.responseText);
+// 			document.querySelector('.p').innerHTML = xml.responseText;
+// 		}
+// 	}
+// }
+// }
+
+
+</script>
+	
+</body>
+</html>

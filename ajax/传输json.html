@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>获取信息</h1>
+<input type="button" id="getjson" value="获取json信息">
+</body>
+</html>
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name:"fox",-->
+        <!--age:18.,-->
+        <!--sex:"女"-->
+    <!--}-->
+    <!--console.log(obj);-->
+    <!--var jsonobj = JSON.stringify(obj);-->
+    <!--console.log(jsonobj);-->
+<!--//    var obj1 = JSON.parse(jsonobj);-->
+    <!--var obj2 = eval('('+jsonobj+')');-->
+    <!--console.log(obj2);-->
+<!--</script>-->
+
+<script type="text/javascript">
+    document.querySelector('#getjson').onclick = function () {
+        var jso = new XMLHttpRequest();
+        jso.open('get','php/json.php');
+        jso.send();
+        jso.onreadystatechange = function () {
+            if (jso.status==200&&jso.readyState==4){
+                console.log(jso.responseText);
+
+                var jsonstar = JSON.parse(jso.responseText);
+                console.log(jsonstar);
+
+                for(var i=0;i<jsonstar.length;i++){
+                    var str = '';
+                    str+='<ul>';
+                    str+='<li>'+jsonstar[i].name+'</li>';
+                    str+='<li>'+jsonstar[i].sex+'</li>';
+                    str+='</ul>';
+                    document.body.innerHTML += str;
+                }
+            }
+        }
+    }
+</script>

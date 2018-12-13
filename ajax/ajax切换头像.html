@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box{
+            width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .showBox{
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 200px;
+            margin: 10px auto;
+            /*background: url("img/mayun.jpg");*/
+        }
+        input{
+            background-color: greenyellow;
+            width: 70px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>点击切换头像</h1>
+    <div class="showBox"></div>
+    <div class="btn">
+        <input type="button" class='starBtn' value='海贼王'  data-star='onePiece'>
+        <input type="button" class='starBtn' value='李彦宏' data-star='lyh'>
+        <input type="button" class='starBtn' value='马云' data-star='my'>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var btnarr = document.querySelectorAll('.starBtn');
+    for (var i = 0;i<btnarr.length;i++){
+        btnarr[i].onclick = function (event) {
+            var xml = new XMLHttpRequest();
+            xml.open('post','php/change.php');
+            xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xml.send('starName='+this.dataset['star']);
+            xml.onreadystatechange = function () {
+                if (xml.status==200&&xml.readyState==4){
+                    console.log(xml.responseText);
+                    document.querySelector('.showBox').style.background = "url("+xml.responseText+")";
+                }
+            }
+        }
+    }
+</script>

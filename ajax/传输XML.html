@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="getxml" value="getXML数据">
+</body>
+</html>
+<script type="text/javascript">
+    document.querySelector('#getxml').onclick = function () {
+        var xl = new XMLHttpRequest();
+        xl.open('get','php/xml.php');
+        xl.send();
+        xl.onreadystatechange = function () {
+            if (xl.readyState ==4&& xl.status==200){
+                console.log(xl.responseText);
+
+                // 异步 对象中 有另外一个属性 用来专门获取 xml
+                // xml对象 在浏览器段 就是一个 document对象
+                // 解析时 可以直接使用 querySelector 或者 getElementById等等 document对象 有的语法
+
+                console.log(xl.responseXML);
+                console.log(xl.responseXML.querySelector('kuzi').innerHTML);
+                console.log(window.document);
+            }
+        }
+    }
+</script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 1000px;
+            height: 500px;
+            border: 1px solid #0094ff;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .box{
+            padding: 0;
+            margin: 0;
+            height: 450px;
+            width: 998px;
+
+        }
+        .chat{
+            padding: 0;
+            margin: 0;
+            width: 998px;
+            height: 48px;
+            border: 1px solid #cccccc;
+            float: left;
+        }
+        #ch{
+            padding: 0;
+            margin: 0;
+            width: 800px;
+            height: 46px;
+            border: 1px solid #0094ff;
+            vertical-align: top;
+        }
+        #subm{
+            padding: 0;
+            margin: 0;
+            border: 1px solid #0094ff;
+            width: 188px;
+            height: 46px;
+            vertical-align: top;
+            font: 20px/46px macrosoft yahei;
+            cursor: pointer;
+        }
+        .self {
+            background: pink;
+        }
+
+        .other {
+            text-align: right;
+            background: lightblue;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+
+    </div>
+    <div class="chat">
+        <input type="text" id="ch" class="text">
+        <input type="button" id="subm" value="发送" class="btn">
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    document.querySelector('.btn').onclick = function (event) {
+        var text = document.querySelector('.text').value;
+        var creatdiv = document.createElement('div');
+        creatdiv.className = 'self';
+        creatdiv.innerText = text;
+        document.querySelector('.box').appendChild(creatdiv);
+        document.querySelector('.text').value = '';
+
+        var xml = new XMLHttpRequest();
+        xml.open('get','php/chat.php');
+        xml.send();
+        xml.onreadystatechange = function () {
+            if (xml.status==200&&xml.readyState==4){
+                console.log(xml.responseText);
+                var oth = document.createElement('div');
+                oth.className = 'other';
+                oth.innerText = xml.responseText;
+                document.querySelector('.box').appendChild(oth);
+            }
+        }
+
+
+    }
+
+</script>
