@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button>动态创建列表</button>
+<ul></ul>
+
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    var content = ["1","2","3","4"];
+    var ul = document.getElementsByTagName("ul")[0];
+
+    btn.onclick = function () {
+//        ul.innerHTML = "";
+        for(var i=0;i<content.length;i++){
+            var newli = document.createElement("li");
+            newli.innerHTML += content[i];
+            ul.appendChild(newli);
+        }
+        var liarr = ul.children;
+
+        for(var i=0;i<liarr.length;i++){
+            liarr[i].onmouseover = function () {
+                for(var j=0;j<liarr.length;j++){
+                    liarr[j].style.backgroundColor = "";
+                }
+                this.style.backgroundColor = "red";
+            }
+        }
+    }
+//如果高亮显示在点击外，则程序加载完的时候并没有LI，代码无用，必须每次新生成li后，就赋予变色的程序
+
+</script>
+</body>
+</html>

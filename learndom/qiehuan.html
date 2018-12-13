@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>qiehuan</title>
+</head>
+<body>
+<a style="display: block" href="#">切换图片</a>
+<img id="img" src="images/1.jpg">
+
+<script>
+    var a = document.getElementsByTagName("a")[0];
+    var img = document.getElementById("img");
+    a.onclick = function () {
+        img.src = "images/1-small.jpg";
+        //禁止链接跳转
+        return false;
+    }
+</script>
+
+</body>
+</html>

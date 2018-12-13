@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab栏切换</title>
+    <style type="text/css">
+        .box{
+            height: 340px;
+            width: 300px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        li{
+            float: left;
+            width: 50px;
+            height: 40px;
+            background-color: yellow;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        span{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+            text-align: center;
+            font-size: 100px;
+            line-height: 300px;
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+        .current{
+            background-color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+    <span class="show">1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+</div>
+<div class="box">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+
+    <span class="show">1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+</div>
+<script>
+    var boxarr = document.getElementsByClassName("box");
+    for(var i=0;i<boxarr.length;i++){
+        fn(boxarr[i]);
+    }
+    function fn(ele) {
+        var liarr = ele.getElementsByTagName("li");
+        var spanarr = ele.getElementsByTagName("span");
+
+        for(var i=0;i<liarr.length;i++){
+//            liarr[i].index = i;
+            liarr[i].setAttribute("index",i);
+            liarr[i].onmouseover = function () {
+                for(var j=0;j<liarr.length;j++){
+//                    liarr[j].className = "";
+//                    spanarr[j].className = "";
+                    liarr[j].removeAttribute("class");
+                    spanarr[j].removeAttribute("class");
+                }
+//                this.className = "current";
+                this.setAttribute("class","current");
+//                spanarr[this.index].className = "show";
+                spanarr[this.getAttribute("index")].setAttribute("class","show");
+            }
+        }
+    }
+
+</script>
+
+
+
+</body>
+</html>

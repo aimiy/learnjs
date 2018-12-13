@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东淘宝</title>
+    <style type="text/css">
+        input{
+            width: 300px;
+            height: 36px;
+            padding-left: 5px;
+            color: #ccc;
+        }
+        label{
+            position: absolute;
+            top: 82px;
+            left: 65px;
+            font-size: 12px;
+            color: #ccc;
+            cursor: text;
+        }
+        #inp2{
+            color: #000;
+        }
+        .hide{
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+京东：<input id="inp1" type="text" value="京东"><br><br>
+淘宝：<label for="inp2" id="inp">淘宝</label><input id="inp2" type="text"><br><br>
+placeholder: <input type="text" placeholder="place">
+
+<script>
+    var inp1 = document.getElementById("inp1");
+    var inp2 = document.getElementById("inp2");
+    var lab = document.getElementById("inp");
+
+    inp1.onfocus = function () {
+        if (inp1.value==="京东"){
+            inp1.style.color = "#000";
+            inp1.value = "";
+        }
+    }
+    //有bug，自己输入京东的时候焦点重新获得的时候也会消失
+    inp1.onblur = function () {
+        if (inp1.value===""){
+            inp1.style.color = "#ccc";
+            inp1.value ="京东";
+        }
+    }
+
+    //淘宝
+    inp2.focus();//一打开网页自动获取光标，否则需要点击
+    inp2.oninput = function () {
+        if (this.value === ""){
+            lab.className = "show";
+        }
+        else {
+            lab.className = "hide";
+        }
+    }
+
+</script>
+</body>
+</html>

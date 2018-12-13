@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        table{
+            width: 214px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            position: relative;
+            top:100px;
+        }
+        th,td{
+            border: 1px solid #000;
+            height: 30px;
+            width: 70px;
+            text-align: center;
+            font-size: 12px;
+        }
+        th{
+            background-color:deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th><input type="checkbox">全选</th>
+        <th>菜名</th>
+        <th>饭店</th>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>红烧肉</td>
+        <td>田老板</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>红烧狮子头</td>
+        <td>田老板</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>日式肥牛</td>
+        <td>田老板</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>西红柿鸡蛋</td>
+        <td>田老板</td>
+    </tr>
+</table>
+
+<script>
+    var inptop = document.getElementsByTagName("input")[0];
+    var botinparr = document.getElementsByTagName("input");
+
+    inptop.onclick = function () {
+//        if (inptop.checked === true){
+//            for (var i=1;i<botinparr.length;i++){
+//                botinparr[i].checked = true;
+//            }
+//        }
+//        else{
+//            for (var i=1;i<botinparr.length;i++){
+//                botinparr[i].checked = false;
+//            }
+//        }
+        for (var i=1;i<botinparr.length;i++){
+                botinparr[i].checked = this.checked;
+            }
+    }
+    for(var i=1;i<botinparr.length;i++){
+        botinparr[i].onclick = function () {
+            for(var j=1;j<botinparr.length;j++){
+                var bool = true;
+                if (botinparr[j].checked === false){
+                    bool = false;
+                }
+                inptop.checked = bool;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

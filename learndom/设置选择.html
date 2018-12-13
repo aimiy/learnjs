@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉列表选择</title>
+</head>
+<body>
+<!--把下拉列表里面选择的设为被选中的，默认的-->
+
+<button>识别</button><br><br>
+<select name="湖北" id="sel">
+    <option value="0">武汉</option>
+    <option value="1">咸宁</option>
+    <option value="2">十堰</option>
+    <option value="3">随州</option>
+</select>
+
+<script>
+        var but = document.getElementsByTagName("button")[0];
+        var sel = document.getElementById("sel");
+        var optarr = sel.getElementsByTagName("option");
+
+        but.onclick = function () {
+            optarr[2].selected = true;
+        }
+
+</script>
+
+</body>
+</html>

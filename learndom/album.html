@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>album</title>
+    <style type="text/css">
+        body{
+            color: #333;
+            background-color: #ccc;
+        }
+        h2{
+            background-color: transparent;
+        }
+        ul{
+        padding: 0;
+        }
+        li{
+            list-style: none;
+            float: left;
+            display: inline;
+        }
+        a{
+            text-decoration: none;
+        }
+        #image{
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+<h2>album</h2>
+<a href="#">注册</a>
+<ul id="imagegallery">
+    <li>
+        <a href="images/1.jpg" title="A">
+            <img src="images/1-small.jpg">
+        </a>
+    </li>
+    <li>
+        <a href="images/2.jpg" title="B">
+            <img src="images/2-small.jpg">
+        </a>
+    </li>
+    <li>
+        <a href="images/3.jpg" title="C">
+            <img src="images/3-small.jpg">
+        </a>
+    </li>
+    <li>
+        <a href="images/4.jpg" title="D">
+            <img src="images/4-small.jpg">
+        </a>
+    </li>
+</ul>
+<div style="clear: both"></div>
+<img id="image" src="images/placeholder.png" width="450px">
+<p id="des">请选择一张图片</p>
+
+<script>
+    var ul = document.getElementById("imagegallery");
+    var links = ul.getElementsByTagName("a");
+    var img = document.getElementById("image");
+    var p = document.getElementById("des");
+    for(var i = 0; i < links.length; i++){
+        links[i].onclick = function fn() {
+            img.src = this.href;
+            p.innerHTML = this.title;
+            //不能使用links[i].title，this指的是函数调用者与i没有关系
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

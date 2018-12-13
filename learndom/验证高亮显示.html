@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>错误即高亮显示文本框</title>
+    <style type="text/css">
+        .error{
+            border: 2px solid red;
+        }
+        .right{
+            border: 2px solid #91B81D;
+        }
+    </style>
+</head>
+<body>
+用户名：<input type="username" onblur="fn(this)"><br><br>
+密&nbsp;码：<input type="password" onblur="fn(this)">
+
+<script>
+    function fn(aaa) {
+//        console.log(aaa);
+        if (aaa.value.length <6 || aaa.value.length>12){
+            aaa.className = "error";
+        }
+        else {
+            aaa.className = "right";
+        }
+    }
+</script>
+</body>
+</html>

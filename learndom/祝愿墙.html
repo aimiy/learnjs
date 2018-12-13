@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>祝愿</title>
+    <style type="text/css">
+        body{
+            background: url("images/1.jpg") no-repeat;
+        }
+        tip,box{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            height: 700px;
+            width: 1000px;
+            margin: 0 auto;
+            background:rgba(255,255,255,0.7);
+        }
+        .tip{
+            border: 1px solid #0099cc;
+            height: 200px;
+            width: 200px;
+            background: rgba(40,40,60,1);
+            text-align: center;
+            line-height: 200px;
+            position: absolute;
+            left: 700px;
+            top:500px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div id="tip" class="tip">
+            2333333333
+    </div>
+</div>
+
+<script>
+    var tip = document.getElementById("tip");
+    var box = document.getElementsByClassName("box")[0];
+
+    for(var i=0;i<10;i++){
+        var newtip = tip.cloneNode(true);
+        var leftvalue = parseInt(Math.random()*1000-100);
+        var topvalue = parseInt(Math.random()*700-100);
+
+        newtip.id = newtip.id+i;
+        newtip.style.left = leftvalue+"px";
+        newtip.style.top = topvalue+"px";
+
+
+        box.appendChild(newtip);
+
+        var index = 1;
+        //把所有的tip绑定到层级最高，点击即调用；
+        newtip.onclick = function () {
+            this.style.zIndex = index;
+            index++;
+        }
+    }
+
+    //点击显示到最前
+
+</script>
+
+</body>
+</html>

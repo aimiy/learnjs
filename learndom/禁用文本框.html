@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁用文本框</title>
+</head>
+<body>
+账号：<input id="inp" type="text" value="mioly"><button id="but">禁用</button><br><br>
+密码：<input type="text" placeholder="请输入密码">
+
+<script>
+    var inp = document.getElementById("inp");
+    var but = document.getElementById("but");
+    but.onclick = function () {
+        if (but.innerHTML==="禁用"){
+            inp.disabled = "disabled";
+            but.innerHTML = "解开";
+        }
+        else{
+//            inp.disabled = 0;
+            inp.removeAttribute("disabled");
+            but.innerHTML = "禁用";
+
+        }
+    }
+
+</script>
+</body>
+</html>
