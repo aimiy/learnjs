@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <select  id="a"></select>
+    <select id="b">
+        <option value="">请选择</option>
+    </select>
+<script>
+    var json = [{
+
+              id: 1,
+              name: '蔬菜',
+              child: [{
+                  id: '1',
+                  name: '白菜'
+              }, {
+                  id: '2',
+                  name: '萝卜'
+              }, {
+                  id: '3',
+                  name: '菠菜'
+              }]
+          }, {
+              id: 2,
+              name: '肉类',
+              child: [{
+                  id: '1',
+                  name: '猪肉'
+              }, {
+                  id: '2',
+                  name: '羊肉'
+              }, {
+                  id: '3',
+                  name: '牛肉'
+              }]
+          }, {
+              id: 3,
+              name: '蛋类',
+              child: [{
+                  id: '1',
+                  name: '鸡蛋'
+              }, {
+                  id: '2',
+                  name: '鹅蛋'
+              }, {
+                  id: '3',
+                  name: '鸭蛋'
+              }]
+          }];
+           var a = document.getElementById('a');
+          var b = document.getElementById('b');
+          json.map(function(s){
+            createop(s,a);
+          });
+          a.onchange = function(){
+            b.innerHTML = '';
+            json.map(function(s){
+                if(s.id==this.options[this.selectedIndex].id){
+                    s.child.map(function(x){
+                        createop(x,b);  
+                    });
+                }
+            }.bind(this));
+          }
+          function createop(h,parent){
+              var op = document.createElement('option');
+              var op_t = document.createTextNode(h.name);
+              op.appendChild(op_t);
+              op.id = h.id;
+              parent.appendChild(op);
+          }
+</script>
+</body>
+</html>

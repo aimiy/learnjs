@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <select id="inp" name="" id="" oninput="inp(this)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <!-- <input id="inp" type="text" onchange="inp(this)"> -->
+    <button id="btn" value=2>js改变value值</button>
+    <input id="jq" type="text" value=1>
+</body>
+<script src="lib/jquery.js" ></script>
+<script>
+    function inp(data) {
+        console.log(data.value)
+    }
+
+    $(function(){
+        $("#btn").click(() =>{
+            $("#inp")[0].value = 2;
+        });
+        $("#jq").click(function(){
+alert($(this)); // 结果是[object Object ]
+alert(this); // 结果是[object HTMLInputElement]
+console.log($(this)); // r.fn.init [input#jq]
+console.log(this); // 结果是<input id="jq" type="text" value="1">
+console.log(this.value); // 1
+console.log($(this).value); // undefined
+console.log($(this).children()); // r.fn.init [prevObject: r.fn.init(1)]
+console.log(this.children()); // Uncaught TypeError: this.children is not a function
+        });
+        // $("#inp").bind('input',function(argument) {
+        //     console.log(this);
+        //     // body...
+        // });
+        // onpropertychange="onpropertychange"
+    });  
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    // 属性检查模仿接口
+    // var CompositeForm = function(id,method,action){
+    //     this.implementsInterfaces = ['Composite','FormItem'];
+    // }
+    // function addForm(formInstance){
+    //     if (!implements(formInstance,'Composite','FormItem')) {
+    //         throw new Error("Object does not implement a required interface");
+    //     }
+    // }
+    // function implements(object){
+    //     for (var i = 1; i < arguments.length; i++) {
+    //         var interfaceName = arguments[i];
+    //         var interfaceFound = false;
+    //         for (var j = 0; j < object.implementsInterfaces.length; j++) {
+    //             if(object.implementsInterfaces[j] == interfaceName){
+    //                 interfaceFound = true;
+    //                 break;
+    //             }
+    //         }
+    //         if (!interfaceFound) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+</script>
+<script>
+    // 综合方法
+    //interface
+    // Constructor
+    var Interface = function(name,methods){
+        if (arguments.length != 2) {
+            throw new Error("Interface constructor called with " + arguments.length + "arguments,but expected exactly 2.");
+        }
+        this.name = name;
+        this.methods = [];
+        for(var i = 0,len = methods.length;i < len; i++){
+            if (typeof methods[i] !== 'string') {
+                throw new Error("Interface constructor expects method names to be " + "passed in as a string");
+            }
+            this.methods.push(methods[i]);
+        }
+    }
+
+    // Static class method
+    
+    Interface.ensureImplements = function(object){
+        if (arguments.length < 2) {
+            throw new Error("Function Interface.ensureImplements called with" + arguments.length + "arguments, but expected at least 2");
+        }
+        for (var i = 1,len = arguments.length; i < len; i++) {
+            var interface = arguments[i];
+            if (interface.constructor !== Interface) {
+                throw new Error("Function Interface.ensureImplements expects arguments" + "two and above to be instances of Interface.");
+            }
+            for(var j=0,methodsLen = interface.methods.length;j<methodsLen;j++){
+                var method = interface.methods[j];
+                if (!object[method] || typeof object[method] !== 'function') {
+                    throw new Error("Function Interface.ensureImplements:object does not implement the " + interface.name + "interface.Method " + method + "was not found.");
+                }
+            }
+        }
+    }
+
+    
+    var DynamicMap = new Interface('DynamicMap',['centerOnPoint','zoom','draw']);
+    function displayRoute(mapInstance){
+        Interface.ensureImplements(mapInstance,DynamicMap);
+        mapInstance.centerOnPoint(12,14);
+        mapInstance.zoom(5);
+        mapInstance.draw();
+    }
+    // displayRoute();
+    console.log(DynamicMap.name);
+    console.log(DynamicMap.methods);
+
+
+
+    
+    var Composite = new Interface('Composite',['add','remove','getChild']);
+    var FormItem = new Interface('FormItem',['save']);
+
+    // CompositeForm class
+    var CompositeForm = function(id,method,action){
+
+    }
+    function addForm(formInstance){
+        Interface.ensureImplements(formInstance,Composite,FormItem);
+    }
+
+</script>
+<script>
+    function foo(){
+        var a=10;
+        function bar(){
+            a*=2;
+            return a;
+        }
+        return bar;
+    }
+    var baz = foo();
+    console.log(baz());
+    console.log(baz());
+    console.log(baz());
+
+    var blat = foo();
+    console.log(blat());
+    
+</script>
+</html>

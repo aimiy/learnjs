@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button onclick="setCookie({'aaa':111,'bbb':222,'ccc':333},1,1)">setcookie</button>
+    <button onclick="getCookie('aaa')">getcookie</button>
+    <script>
+        function setCookie (name, value, day) {
+        var setting = arguments[0];
+        if (Object.prototype.toString.call(setting).slice(8, -1) === 'Object') {
+            for (var i in setting) {
+                oDate = new Date();
+                oDate.setDate(oDate.getDate() + day);
+                console.log(i);
+                document.cookie = i + 'HFT=' + setting[i] + ';expires=' + oDate;
+            }
+        } else {
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + day);
+            document.cookie = name + 'HFT=' + value + ';expires=' + oDate;
+        }
+        console.log(document.cookie);
+    };
+    // 获取cookie
+    function getCookie (name) {
+        console.log(arguments[0]);
+        console.log(document.cookie);
+        var arr = document.cookie.split('; ');
+        console.log(arr);
+        name = name + 'HFT';
+        for (var i = 0; i < arr.length; i++) {
+            var arr2 = arr[i].split('=');
+            console.log(arr2)
+            if (arr2[0] === name) {
+                // return arr2[1];
+            }
+        }
+        return '';
+    };
+    function removeCookie (name) {
+        this.setCookie(name, 1, -1);
+    }
+    </script>
+</body>
+</html>

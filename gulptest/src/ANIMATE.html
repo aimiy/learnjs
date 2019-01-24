@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	@-webkit-keyframes rollInLeft1 {
+		0% {
+			opacity: 0;
+			-webkit-transform: translate3d(100%,0,0) rotate(120deg);
+			transform: translate3d(100%,0,0) rotate(120deg);
+		}
+
+		100% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	.rollInLeft1{
+		position: absolute;
+		left: 50px;
+		top: 50px;
+		animation: rollInLeft1 2s linear 0s 1 alternate;
+	}
+	a{
+		transform: none;
+		transition: all 1s ease 0s;
+		transform-origin: left center;
+		position: absolute;
+		left: 50px;
+		top: 100px;
+	}
+	a:hover{
+		transform:rotate(120deg);
+	}
+</style>
+</head>
+<body>
+	<div class="rollInLeft1">321321321</div>
+	<a href="">321321321</a>
+</body>
+</html>

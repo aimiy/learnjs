@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	 
+<!---把以下文本复制到记事本里面，然后保存成 .htm 格式文件，用IE打开就可以预览效果了--> 
+<script language="JavaScript"> 
+function toDesktop(sUrl,sName){ 
+try 
+{ 
+var WshShell = new ActiveXObject("WScript.Shell"); 
+var oUrlLink = WshShell.CreateShortcut(WshShell.SpecialFolders("Desktop") + "\\" + sName + ".url"); 
+oUrlLink.TargetPath = sUrl; 
+oUrlLink.Save(); 
+} 
+catch(e) 
+{ 
+alert("当前IE安全级别不允许操作！"); 
+} 
+} 
+</script> 
+<input name="btn" type="button" id="btn" value="星光下载" onClick="toDesktop('http:\//www.baidu.com/','超级搜索')"> 
+<input name="btn" type="button" id="btn" value="C盘" onClick="toDesktop('file:\//C:','C盘')"> 
+
+</body>
+</html>

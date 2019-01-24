@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	.box{
+		width: 300px;
+		height: 200px;
+		background: #cecece;
+		border-radius: 4px;
+		position: relative;
+	}
+	.left{
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		background: #fff;
+		position: absolute;
+		box-shadow: inset -2px 2px 6px;
+	}
+	#left{
+		width: 10px;
+		height: 20px;
+		position: relative;
+		top: 50px;
+		left: -10px;
+		overflow: hidden;
+	}
+	.right{
+		width: 20px;
+		height: 20px;
+		border-radius: 20px;
+		background: #fff;
+		position: absolute;
+		top: 50px;
+		right: -10px;
+	}
+</style>
+</head>
+<body>
+	<div class="box">
+		<div id="left">
+		<div class="left"></div></div>
+		<div class="right"></div>
+	</div>
+</body>
+</html>
