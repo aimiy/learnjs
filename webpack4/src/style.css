@@ -8,6 +8,10 @@
     font-style: normal;
 }
 
+body{
+  background: red;
+}
+
 .hello {
   color: red;
   font-family: myfont;
