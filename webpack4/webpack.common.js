@@ -4,15 +4,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    mode: "development",
     entry: {
         app:'./src/index.js',
-    },
-    devtool:'inline-source-map',
-    devServer:{
-        contentBase:'./dist',
-        port:3002,
-        hot:true
     },
     plugins:[
     new CleanWebpackPlugin(['dist']),
