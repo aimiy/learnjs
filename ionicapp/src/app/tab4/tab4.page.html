@@ -1,13 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      首页
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-   
-    <ion-button (click)="onClickMe()">dvdv</ion-button>
-    {{clickMessage}}
+<ion-card *ngFor="let wb of timeline.statuses">
+  <ion-item>
+    <div class="userimg">
+        <img src="{{wb.user.profile_image_url}}" alt="">
+    </div>
+    <ion-label>{{wb.user.screen_name}}</ion-label>
+    
+  </ion-item>
+  <ion-card-content>
+    {{wb.text}}
+    <div class="imglist">
+        <div class="imgcontent" *ngFor="let img of wb.pic_urls" [ngStyle]="{'background-image':'url('+ img.thumbnail_pic +')'}">
+            <!-- <img src="{{img.thumbnail_pic}}" alt=""> -->
+        </div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { HttpClient } from "@angular/common/http" 
 
 @Component({
   selector: 'app-tab4',
@@ -7,16 +8,11 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab4.page.scss']
 })
 export class Tab4Page {
-clickMessage = "21321";
-constructor(public alertController: AlertController) {}
-  async onClickMe() {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Subtitle',
-      message: 'This is an alert message.',
-      buttons: ['Cancel', 'Open Modal', 'Delete']
-    });
-
-    await alert.present();
+  timeline = {"statuses":[]};
+  constructor(private http:HttpClient) {}
+  public anyList:any
+  ngOnInit(){
+    this.http.get("assets/timeline.json")
+    .subscribe(res=>{ this.timeline = res })
   }
 }
