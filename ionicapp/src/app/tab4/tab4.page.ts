@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { HttpClient } from "@angular/common/http" 
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-tab4',
@@ -8,9 +8,9 @@ import { HttpClient } from "@angular/common/http"
   styleUrls: ['tab4.page.scss']
 })
 export class Tab4Page {
-  timeline = {"statuses":[]};
+  timeline = {};
+
   constructor(private http:HttpClient) {}
-  public anyList:any
   ngOnInit(){
     this.http.get("assets/timeline.json")
     .subscribe(res=>{ this.timeline = res })
