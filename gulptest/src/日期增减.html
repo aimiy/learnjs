@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var str = '2019-2-1';
+        var date = new Date();
+
+
+
+        var initdate = str.split("-");
+        date.setFullYear(parseInt(initdate[0]));
+        date.setMonth(parseInt(initdate[1]) - 1);
+        date.setDate(parseInt(initdate[2])); 
+        var num = 10;
+        date.setMonth(date.getMonth() + num);
+        console.log(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+    </script>
+</body>
+</html>
