@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <input type="text" v-model=text"" name="" id="" value="" />
+            {{text}}
+        </div>
+	</body>
+    <script>
+    var dom = nodeToFragment(document.getElementById('app'));
+    console.log(dom)
+        
+        
+        function MyVue(options){
+            this.data = options.data;
+            var id = options.el;
+            
+        }
+        
+        var vm = new MyVue({
+            el: '#app',
+            data: {
+                text: 'hello!'
+            }
+        });
+        var obj = {
+            foo:'foo'
+        };
+        Object.defineProperty(obj,'foo',{
+            get:() => {
+                console.log('将要读取属性');
+        },
+        set:function(new1){
+            console.log('当前值为',new1)
+        },
+        });
+        
+        obj.foo;
+        obj.foo = 123;
+    </script>
+</html>
