@@ -15,7 +15,7 @@ gulp.task('server',function(){
 
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch(['*/*.html'],function(event){
+    gulp.watch(['*/*.html','*/*/*.html'],function(event){
         livereload.changed(event.path);
     })
 });

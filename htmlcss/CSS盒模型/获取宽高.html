@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>盒模型</title>
+	</head>
+	<body>
+		# 基本概念：标准模型。ie模型
+		标准的width只包含content，ie还包含border与padding
+		#css如何设置这两种模型
+		box-sizing:content-box
+		box-sizing:border-box
+		#js如何设置获取盒模型对应的宽和高
+		dom.style.width/height只能取到内联样式的宽和高
+		dom.currentStyle.width/height三种样式方法都能获取，但是只能ie支持
+		window.getComputedStyle(dom).width/height与上相同，但兼容性好
+		dom.getBoundingClientRect().width/height计算元素的绝对位置，根据视窗来的还有top,left,right,bottom
+		<section>
+			<style>
+				.dombox{
+					width: 200px;
+					height: 200px;
+					background: #0099CC;
+				}
+			</style>
+			<div class="dombox"></div>
+			<script>
+				let dom = document.getElementsByClassName("dombox")[0];
+				let w = dom.style.width;
+				// let wie = dom.currentStyle.width;
+				let w1 = window.getComputedStyle(dom).width;
+				let clientw = dom.getBoundingClientRect().width;
+				
+				console.log(w)
+				console.log(w1);
+				console.log(clientw)
+			</script>
+		</section>
+		#实例题，根据盒模型解释边距重叠
+		添加overflow:hidden后，会让父元素创建了BFC，也就是块级格式化上下文。
+		因此高度会扩张为110，margin不会重叠。
+		拓展IFC：内联元素格式化上下文
+		
+		基本概念：
+		原理，渲染规则：
+		1.BFC垂直方向的边距会发生重叠
+		2.BFC的区域不会与浮动元素的box重叠，可以用来清楚浮动和布局
+		3.BFC在页面上是一个独立的容器，里面外面的元素不会互相影响
+		4.计算BFC高度的时候，浮动元素也会参与计算
+		
+		如何创建BFC：
+		1.overflow: hidden，auto;
+		2.float:不为none
+		3.只要position的值不是static或者relative
+		4.display的值为table那几个，table-cell就会创建BFC
+		
+		BFC使用场景
+		<style>
+			.father{
+				background: red;
+				overflow: hidden;
+			}
+			.child{
+				margin-top: 10px;
+				background: yellow;
+				height: 100px;
+			}
+		</style>
+		<div class="father">
+			<div class="child">
+			</div>
+		</div>
+		
+		#BFC边距重叠解决方案
+		## 垂直元素margin重叠
+		<section id="margin">
+			<style>
+				#margin{
+					background: red;
+					
+				}
+				#margin p{
+					margin: 5px auto 25px;
+					background: yellow;
+				}
+				
+			</style>
+			<p>1</p>
+			<div style="overflow: hidden;">
+				
+			<p>2</p>
+			</div>
+			
+			<p>3</p>
+		</section>
+		## BFC不与float元素样式重叠
+		布局相关的，两栏布局，左宽度固定，右边自适应
+		<section id="layout">
+			<style type="text/css">
+				#layout{
+					background: red;
+					
+				}
+				#layout .left{
+					float: left;
+					width: 100px;
+					height: 100px;
+					background: yellow;
+				}
+				#layout .right{
+					height: 110px;
+					background: yellowgreen;
+					overflow: auto;
+				}
+			</style>
+			<div class="left"></div>
+			<div class="right"></div>
+		</section>
+		## BFC计算高度的时候，也会计算float元素，否则不会
+		<section id="float">
+			<style>
+				#float{
+					background: red;
+					/* overflow: hidden; */
+					float: left;
+				}
+				#float .float{
+					float: left;
+				}
+				
+			</style>
+			<div class="float">
+				浮动元素
+			</div>
+		</section>
+	</body>
+</html>
