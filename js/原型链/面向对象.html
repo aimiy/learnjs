@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>面向对象</title>
+	</head>
+	<body>
+		# 类与实例
+		<script type="text/javascript">
+		// ## 类的声明
+			function Animal(){
+				this.name = 'name';
+			}
+			
+			// es6
+			class Animal2{
+				constructor(name) {
+					this.name = name;
+				}
+			}
+			// 实例化
+			console.log(new Animal(),new Animal2())
+			
+			
+			// 继承
+			// 1. 借助构造函数实现继承
+			function Parent1(){
+				this.name = 'parent1';
+			}
+			Parent1.prototype.sayHi = function(){
+				console.log('hi')
+			}
+			function Child1(){
+				Parent1.call(this);
+				this.type = 'child1';
+			}
+			// 无法继承父的原型上的方法,只实现了部分继承
+			// console.log(new Child1(),new Parent1().sayHi(), new Child1().sayHi())
+			
+			// 2. 借助原型链实现继承,个人理解就是把子实例的原型链指向了父的实例
+			function Parent2(){
+				this.name = 'parent2';
+				this.play = [0];
+			}
+			function Child2(){
+				this.type = 'child2';
+			}
+			Child2.prototype = new Parent2();
+			
+			// 由于
+			console.log(new Parent2().__proto__ === Parent2.prototype) 
+			// 所以
+			console.log(Child2.prototype.__proto__ === Parent2.prototype)
+			
+			
+			// 缺点,更改某子实例,会同样影响到另一子实例
+			let s1 = new Child2();
+			let s2 = new Child2();
+			s1.play.push(4);
+			console.log(s2.play);
+			
+			// 3. 组合方式
+			function Parent3(){
+				this.name = 'p3';
+				this.play = [0];
+			}
+			function Child3(){
+				Parent3.call(this);
+				this.type = 'child3';
+			}
+			Child3.prototype = new Parent3();
+			let s3 = new Child3();
+			let s4 = new Child3();
+			s3.play.push(4);
+			console.log(s3.play,s4.play);
+			
+			// 组合继承的优化
+			function Parent4(){
+				this.name = 'p4';
+				this.play = [0];
+			}
+			function Child4(){
+				Parent4.call(this);
+				this.type = 'child4';
+			}
+			Child4.prototype = Parent4.prototype;
+			
+			let s5 = new Child4();
+			let s6 = new Child4();
+			s5.play.push(4);
+			console.log(s5,s6);
+			console.log(s5.play,s6.play);
+			
+			// 缺点,会导致子实例的constructor不是子构造函数，而是父类的,因为p4的原型对象直接赋给了子的原型对象,直接覆盖掉了子构造函数的constructor,成了P4实例的指向
+			console.log(s5.constructor)
+			
+			
+			// 组合继承的优化2
+			function Parent5(){
+				this.name = 'p5';
+				this.play = [0];
+			}
+			function Child5(){
+				Parent5.call(this);
+				this.type = 'child5';
+			}
+			Child5.prototype = Object.create(Parent5.prototype);
+			// 此时子实例的constructor依旧不是子构造函数，而是父类的,因为子实例原型对象里没有constructor。会去寻找父类的.
+			Child5.prototype.constructor = Child5;
+			
+			let s7 = new Child5();
+			let s8 = new Child5();
+			s7.play.push(4);
+			console.log(s7,s8);
+			console.log(s7.play,s8.play)
+			console.log(s7.constructor)
+		</script>
+		
+		# 类与对象
+		
+	</body>
+</html>

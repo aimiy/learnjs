@@ -5,10 +5,57 @@
 		<title></title>
 	</head>
 	<body>
-		创建对象有几种方法
-		原型，构造函数，实例，原型连
-		instanceof原理
+		# 创建对象有几种方法
+		<script>
+		// 1. 对象字面量
+		let o1={name:'o1'};
+		let o2=new Object({name:'o2'});
+		// 2. 构造函数
+		let M = function(name){this.name = name;};
+		let o3= new M('o3');
+		// 3. Object.create()
+		let p = {name:'p'};
+		let o4 = Object.create(p);
+		
+		// 这个方法是用原型对象创建的
+		console.log(o4.__proto__ === p)
+		
+		console.log(o1)
+		console.log(o2)
+		console.log(o3)
+		console.log(o4)
+			
+		</script>
+		
+		# 原型，构造函数，实例，原型链
+		# instanceof原理
+		只会查看是不是有这个属性没并不能完全用来判断是不是实例
+		
+		# new干了什么
+		模仿一个new
+		<script>
+			
+		var new2 = function(func){
+			var o = Object.create(func.prototype);
+			var k = func.call(o);
+			if(typeof k === 'object'){
+				return k;
+			}else{
+				return o;
+			}
+		}
+		
+		// 测试
+		let o6 = new2(M);
+		// 判断
+		console.log(o6 instanceof M)
+		console.log(o6.__proto__.constructor === M)
+		console.log(o6 instanceof Object)
+		 
+		</script>
 		
 		
 	</body>
+	<!-- <script src="https://cdn.bootcss.com/markdown.js/0.6.0-beta1/markdown.min.js"></script> -->
+	
 </html>

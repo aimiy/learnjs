@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>错误监控</title>
+	</head>
+	<body>
+		# 前端错误的分类
+		# 错误的捕获方式
+		## 即时运行错误即代码错误
+		1. try...catch
+		2.window.onerror
+		
+		## 资源加载错误(不会冒泡，但可以捕获)
+		1. object.onerror
+		
+		2. performance.getEntries()
+		返回的是一个数组
+		获取的是已经加载的所有资源
+		
+		3.error事件
+		<script>
+			window.addEventListener('error',function(e){
+				console.log('捕获');
+			},true)
+		</script>
+		<!-- <script src="www.baisudcs.com"></script> -->
+		
+		
+		延申：js是跨域的，错误可以捕获吗，提示什么，应该怎么处理。
+		可以捕获，会提示script error
+		处理：就可以拿到详细信息了
+		1. 再script标签增加crossorigin属性
+		2. 在js资源响应头添加access-control-allow-origin:*
+		
+		
+		
+		
+		# 上报错误的基本原理
+		1. ajax通信错误上报
+		
+		2. 利用image对象上报
+		<script>
+			(new Image()).src = 'http://baidu.com/testjk?sdbjsbdjfh'
+		</script>
+	</body>
+</html>

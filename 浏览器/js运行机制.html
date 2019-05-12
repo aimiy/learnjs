@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		# 如何理解js单线程
+		
+		#什么是任务队列
+		同步任务优先于异步任务
+		
+		同步任务会执行完再执行异步队列
+		<script>
+			console.log(111);
+			
+		
+		setTimeout(function(){
+			console.log(333);
+		},0)
+		// while(1){
+		// 	console.log(55)
+		// }//阻塞了后面的同步队列
+		console.log(444)
+			new Promise(() => {
+				console.log(2222)
+			});
+		</script>
+		
+		
+		
+		# 什么是event loop
+		
+		# 哪些语句会放入异步任务队列
+		异步任务
+		setTimeout，setinterval
+		promise
+		
+		# 理解语句放入异步任务队列的时机
+		
+	</body>
+</html>

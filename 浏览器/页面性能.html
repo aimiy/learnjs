@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>21：14开始
+		# 提升页面性能的方法
+		
+		1. 资源压缩合并，减少http请求
+		2. 非核心代码异步加载
+		如何异步加载
+		动态脚本加载，defer，async
+		
+		异步加载的区别
+		defer在html加载完成后才会按照加载顺序执行
+		async记载完成后立即执行，跟顺序没关系
+		
+		3. 利用浏览器缓存
+		
+		缓存的分类
+		强缓存:直接拿过来用，不询问服务器
+		响应头
+		过期时间 expires expires:Thu,21 Jan...绝对时间，服务器下发的绝对时间，当前时间前都不需要再请求。可能与服务器时间不一致，于是有了下一个
+		cache-control cache-control：max-age=3600相对时间，拿到资源后3600秒后不用再去请求服务器
+		
+		协商缓存，有副本，但问服务器能不能用
+		last-modified 上次修改的时间，服务器下发的 if-modified-since请求的时候携带的，给服务器对比 last-modified：wed，26 jan2017...上次修改的时间，强缓存过期后会去确认
+		
+		ETAG If-none-match 
+		
+		缓存的原理
+		
+		4.使用CDN
+		5. DNS预解析
+				<meta http-equiv="x-dns-prefetch-control" content="no" />
+				页面中所有的a标签，在浏览器中默认打开了预解析。https关闭了，用meta打开
+				
+				<link rel="dns-prefetch" href="//host_name_to_prefetch.com">
+	</body>
+</html>
