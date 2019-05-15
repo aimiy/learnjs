@@ -93,4 +93,10 @@ create1(null); // OK
 // create(o:false)
 // create(o:undefined)
 
+// 类型断言
+let someValue:any = 'this is a string'
+
+// 为any的时候找不到someValue.length
+// 强制转成字符串
+let strLength:number = (<string>sonmeValue).length
 
