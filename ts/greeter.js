@@ -56,6 +56,12 @@ function inifiniteLoop() {
     while (true) {
     }
 }
+// object非原始类型
+// object.create
+// declare function create1(o: object | null): void;
+function create1(o) {
+    console.log(o);
+}
 create1({ prop: 0 }); // OK
 create1(null); // OK
 // 以下错误
@@ -67,4 +73,5 @@ create1(null); // OK
 var someValue = 'this is a string';
 // 为any的时候找不到someValue.length
 // 强制转成字符串
-var strLength = sonmeValue.length;
+// let strLength:number = (<string>sonmeValue).length
+var strLength = someValue.length;

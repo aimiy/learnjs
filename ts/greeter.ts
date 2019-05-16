@@ -82,13 +82,16 @@ function inifiniteLoop():never{
 // object非原始类型
 // object.create
 
-declare function create1(o: object | null): void;
+// declare function create1(o: object | null): void;
 
-create1({ prop: 0 }); // OK
-create1(null); // OK
+function create(o: object | null): void{
+    console.log(o)
+}
+create({ prop: 0 }); // OK
+create(null); // OK
 
 // 以下错误
-// create(o:42)
+create(o:42)
 // create(o:'string')
 // create(o:false)
 // create(o:undefined)
@@ -98,5 +101,5 @@ let someValue:any = 'this is a string'
 
 // 为any的时候找不到someValue.length
 // 强制转成字符串
-let strLength:number = (<string>sonmeValue).length
-
+// let strLength:number = (<string>sonmeValue).length
+let strLength:number = (someValue as string).length
