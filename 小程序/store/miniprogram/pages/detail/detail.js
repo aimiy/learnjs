@@ -1,4 +1,5 @@
-// pages/me/me.js
+// pages/detail/detail.js
+const db = require('../../utils/db')
 const util = require('../../utils/util')
 
 Page({
@@ -7,26 +8,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
   },
-  onTapLogin(event) {
-    console.log(event);
-
-    this.setData({
-      userInfo: event.detail.userInfo
+  getProductDetail(id){
+    wx.showLoading({
+      title: 'Loading...',
     })
-  },
-  onTapAddress() {
-    wx.showToast({
-      icon: 'none',
-      title: 'This function is not open yet.'
-    })
-  },
-
-  onTapService() {
-    wx.showToast({
-      icon: 'none',
-      title: 'This function is not open yet.'
+    db.getProductDetail(id).then(result => {
+      console.log(result)
+      wx.hideLoading()
+      const data = result.result
+      if (data) {
+        this.setData({
+          product: data
+        })
+      } else {
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 2000)
+      }
+    }).catch(err => {
+      console.error(err)
+      wx.hideLoading()
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 2000)
     })
   },
 
@@ -34,7 +39,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getProductDetail(options.id)
   },
 
   /**
@@ -48,11 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    util.getUserInfo().then(userInfo => {
-      this.setData({
-        userInfo
-      })
-    })
+
   },
 
   /**
