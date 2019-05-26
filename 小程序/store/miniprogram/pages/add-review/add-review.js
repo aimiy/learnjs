@@ -1,33 +1,16 @@
-// pages/me/me.js
-const util = require('../../utils/util')
-
+// miniprogram/pages/add-review/add-review.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
-  },
-  onTapLogin(event) {
-    console.log(event);
+    product: {
+      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
+      name: 'Product 1',
+      price: '50.50',
+    },
 
-    this.setData({
-      userInfo: event.detail.userInfo
-    })
-  },
-  onTapAddress() {
-    wx.showToast({
-      icon: 'none',
-      title: 'This function is not open yet.'
-    })
-  },
-
-  onTapService() {
-    wx.showToast({
-      icon: 'none',
-      title: 'This function is not open yet.'
-    })
   },
 
   /**
@@ -48,13 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    util.getUserInfo().then(userInfo => {
-      this.setData({
-        userInfo
-      })
-    }).catch(eerr => {
-      console.log("Not Authenticated yet")
-    })
+
   },
 
   /**

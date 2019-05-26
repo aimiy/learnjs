@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// JS变量按照存储方式区分为哪些类型？并描述其特点
+			// 值类型与引用类型
+			var a = 100;
+			var b = a;
+			a = 200;
+			
+			var c = {age:20};
+			var d = c;
+			c.age = 21;
+			
+			console.log(a)
+			console.log(b)
+			console.log(c)
+			console.log(d)
+			
+			// typeof运算符,除了可以区分函数以外，剩下的只能区分值类型的类型
+			
+			console.log(typeof undefined)
+			console.log(typeof 'abc')
+			console.log(typeof 123)
+			console.log(typeof true)
+			console.log(typeof {})
+			console.log(typeof [])
+			console.log(typeof null)
+			console.log(typeof Function)
+			
+			// 变量计算--强制类型转换
+			// 字符串拼接
+			var a = 100 + 10;
+			var b = 100 + '10';
+			console.log(b)
+			// ==运算符
+			console.log(100 == '100')
+			console.log(0 == '')
+			console.log(null == undefined)
+			// if语句
+			var a= true;
+			if(a){
+				console.log(true)
+				}
+				var b = 100
+				if(b){
+					console.log(true)
+				}
+				var c = '';
+				if(c){
+					console.log(true)
+				}else{
+					console.log(false)
+				}
+			// 逻辑运算
+			console.log(100 && 0)
+			console.log('' || 'abc')
+			console.log(!undefined)
+			
+			// 判断一个变量会被当作true还是false
+			var a =100;
+			console.log(!!a)
+			
+			// 何时使用===,==
+			if (window.ccc == null) {
+				// 相当于obj === null || obj.a === undefined,其他情况全用===
+				console.log(true)
+			} else{
+				console.log(false)
+			}
+		</script>
+	</body>
+</html>

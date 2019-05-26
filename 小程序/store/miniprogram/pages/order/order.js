@@ -1,11 +1,15 @@
 // pages/order/order.js
+const util = require('../../utils/util.js')
+const db = require('../../utils/db')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: null,
+    orderList: []
   },
 
   /**
@@ -26,7 +30,50 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    util.getUserInfo().then(userInfo => {
+      this.setData({
+        userInfo
+      })
+      this.getOrders()
+    }).catch(eerr => {
+      console.log("Not Authenticated yet")
+    })
+    this.data.orderList.forEach(order => {
+      order.productList.forEach(product => product.price = util.priceFormat(product.price))
+    })
 
+    this.setData({
+      orderList: this.data.orderList
+    })
+  },
+  onTapLogin(event){
+    this.setData({
+      userInfo:event.detail.userInfo
+    })
+  },
+  getOrders(){
+    wx.showLoading({
+      title: 'Loading...',
+    })
+    db.getOrders().then(result => {
+      wx.hideLoading()
+
+      const data = result.result
+
+      if (data) {
+        this.setData({
+          orderList: data
+        })
+      }
+    }).catch(err => {
+      console.error(err)
+      wx.hideLoading()
+
+      wx.showToast({
+        icon: 'none',
+        title: 'Failed',
+      })
+    })
   },
 
   /**

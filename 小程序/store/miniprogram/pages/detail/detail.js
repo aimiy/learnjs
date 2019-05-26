@@ -34,6 +34,60 @@ Page({
       }, 2000)
     })
   },
+  buy(){
+    wx.showLoading({
+      title: 'Purchasing',
+    })
+    const productToBuy = Object.assign({
+      count: 1
+    }, this.data.product)
+    productToBuy.productId = productToBuy._id;
+
+    db.addToOrder({
+      list: [productToBuy]
+    }).then(result => {
+      wx.hideLoading()
+      const data = result.result
+
+      if (data) {
+        wx.showToast({
+          title: 'Succeed'
+        })
+      }
+    }).catch(err => {
+      console.error(err)
+      wx.hideLoading()
+      wx.showToast({
+        icon: 'none',
+        title: 'Failed'
+      })
+    })
+  },
+  addToCart() {
+    wx.showLoading({
+      title: 'Loading...',
+    })
+
+    db.addToCart(this.data.product).then(result => {
+      wx.hideLoading()
+
+      const data = result.result
+
+      if (data) {
+        wx.showToast({
+          title: 'Succeed'
+        })
+      }
+    }).catch(err => {
+      console.error(err)
+      wx.hideLoading()
+
+      wx.showToast({
+        icon: 'none',
+        title: 'Failed'
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

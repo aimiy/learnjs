@@ -1,0 +1,8 @@
+<!--miniprogram/pages/add-review/add-review.wxml-->
+<view class="product-card">
+  <image class="product-image" mode="widthFix" src="{{product.image}}"></image>
+  <view class="product-info">
+    <view class="product-name">{{product.name}}</view>
+    <view class="product-price">$ {{product.price}}</view>
+  </view>
+</view>

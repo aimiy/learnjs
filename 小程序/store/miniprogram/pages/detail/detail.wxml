@@ -9,7 +9,6 @@
   </view>
 </view>
 <view class="info-card">
-
   <view class="advantage-list">
     <view class="advantage-item">
       <image class="advantage-icon" src="/images/check-yellow.png"></image>
@@ -32,6 +31,6 @@
 
 </view>
 <view class="opr-cnt">
-  <view class="opr-cart">Add to Cart</view>
-  <view class="opr-buy">Buy it Now</view>
+  <view class="opr-cart" bindtap='addToCart'>Add to Cart</view>
+  <view class="opr-buy" bindtap='buy'>Buy it Now</view>
 </view>

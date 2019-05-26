@@ -2,7 +2,7 @@
 <image class="bg" src="/images/bg.png"></image>
 
 <view wx:if="{{!userInfo}}">
-<login bindonLogin="onTabLogin"></login>
+<login bindonLogin="onTapLogin"></login>
 </view>
 
 <view class="user-card" wx:else>
