@@ -93,4 +93,19 @@ module.exports = {
         return {}
       })
   },
+  addReview(data) {
+    return util.isAuthenticated()
+      .then(() => {
+        return wx.cloud.callFunction({
+          name: 'addReview',
+          data,
+        })
+      }).catch(() => {
+        wx.showToast({
+          icon: 'none',
+          title: 'Please Login First'
+        })
+        return {}
+      })
+  },
 }
