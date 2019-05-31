@@ -14,9 +14,10 @@
     }
     .face{
         position: relative;
+        margin-top: 16px;
         display: inline-block;
         width: 50px;
-        height: 50px;
+        height: 45px;
         border: 1px solid #3e3e3e;
         overflow: hidden;
     }
@@ -27,9 +28,9 @@
         border-color: transparent transparent #3e3e3e #3e3e3e;
     }
     .ear-left{
-        position: absolute
-        top:0;
-        left:0;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     .ear-right{
         position: absolute;
@@ -55,14 +56,67 @@
     }
     .nose{
         position: absolute;
-        top: 30px;
+        top: 25px;
         left: 21px;
         width: 8px;
         height: 8px;
         background: #3e3e3e;
         border-radius: 50%;
     }
-    .mouse{}
+    .mouse{
+        width: 8px;
+        height: 8px;
+        border: 3px solid;
+        border-color: transparent #3e3e3e transparent transparent;
+        border-radius: 50%;
+        transform: rotate(45deg);
+    }
+    .mouse-left{
+        position: absolute;
+        top: 25px;
+        left: 12px;
+    }
+    .mouse-right{
+        position: absolute;
+        top: 25px;
+        left: 24px;
+        transform: rotate(135deg);
+    }
+    
+    .beard>div{
+        position: absolute;
+        width: 8px;
+        height: 1px;
+        background: #3e3e3e;
+    }
+    .beard-left>div{
+        left: 8px;
+    }
+    .beard-left>div:nth-child(1){
+        top: 27px;
+        transform: rotate(5deg)
+    }
+    .beard-left>div:nth-child(2){
+        top: 32px;
+    }
+    .beard-left>div:nth-child(3){
+        top: 37px;
+        transform: rotate(-5deg)
+    }
+    .beard-right>div{
+        right: 8px;
+    }
+    .beard-right>div:nth-child(1){
+        top: 27px;
+        transform: rotate(-5deg)
+    }
+    .beard-right>div:nth-child(2){
+        top: 32px;
+    }
+    .beard-right>div:nth-child(3){
+        top: 37px;
+        transform: rotate(5deg)
+    }
     </style>
 </head>
 <body>
@@ -73,7 +127,18 @@
             <div class="eye eye-left"></div>
             <div class="eye eye-right"></div>
             <div class="nose"></div>   
-            <div class="mouse"></div>
+            <div class="mouse mouse-left"></div>
+            <div class="mouse mouse-right"></div>
+            <div class="beard beard-left">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="beard beard-right">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </section>
 </body>
