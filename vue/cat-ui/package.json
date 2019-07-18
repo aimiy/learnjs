@@ -1,11 +1,16 @@
 {
-  "name": "cat-ui",
+  "name": "cat-ui-f",
   "version": "0.1.0",
-  "private": true,
+  "description": "my ui based on vue",
+  "main": "lib/cat-ui.umd.min.js",
+  "private": false,
+  "license": "MIT",
+  "author": "fym",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name cat-ui --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -18,6 +23,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
