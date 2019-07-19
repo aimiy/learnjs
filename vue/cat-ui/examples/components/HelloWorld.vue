@@ -5,10 +5,26 @@
 </template>
 
 <script>
+
+import {Toast}  from '../../packages/index.js';
+
 export default {
   name: "HelloWorld",
   created() {
-    this.$toast.show();
+    console.log(Toast);
+    
+    Toast({
+      message:"ceshi",
+      position:"top",
+      duration:3000
+    });
+
+    this.$toast({
+      message:"ceshi",
+      position:"middle",
+      duration:3000
+    });
+    
   }
 };
 </script>

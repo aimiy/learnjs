@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import  Toast  from "../packages/index.js";
-Vue.use(Toast);
-
-Vue.prototype.$toast = Toast
+import catUI from "../packages/index.js";
+Vue.use(catUI);
 
 Vue.config.productionTip = false
 
