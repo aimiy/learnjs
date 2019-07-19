@@ -1,7 +1,9 @@
 <template>
-  <div class="cat-toast" :class="placeClass">
-    <span class="cat-toast-text">{{message}}</span>
-  </div>
+  <transition name="cat-toast-pop">
+    <div class="cat-toast" v-show="visible" :class="placeClass">
+      <span class="cat-toast-text">{{message}}</span>
+    </div>
+  </transition>
 </template>
 <style lang="less" scoped>
 /* @component-namespace cat {
@@ -23,12 +25,16 @@
   // box-sizing: border-box;
   padding: 10px;
   word-wrap: break-word;
-
+  transition: opacity 0.3s linear;
   .cat-toast-text {
     font-size: 14px;
     display: block;
     text-align: center;
   }
+}
+.cat-toast-pop-enter,
+.cat-toast-pop-leave-active {
+  opacity: 0;
 }
 .placemiddle {
   left: 50%;
@@ -67,7 +73,7 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: true
     };
   },
   computed: {

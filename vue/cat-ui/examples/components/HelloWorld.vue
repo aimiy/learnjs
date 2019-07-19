@@ -11,7 +11,6 @@ import {Toast}  from '../../packages/index.js';
 export default {
   name: "HelloWorld",
   created() {
-    console.log(Toast);
     
     Toast({
       message:"ceshi",
@@ -22,7 +21,13 @@ export default {
     this.$toast({
       message:"ceshi",
       position:"middle",
-      duration:3000
+      duration:5000
+    });
+
+    this.$toast({
+      message:"ceshi",
+      position:"bottom",
+      duration:4000
     });
     
   }
