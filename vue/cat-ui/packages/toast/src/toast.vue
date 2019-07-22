@@ -6,14 +6,6 @@
   </transition>
 </template>
 <style lang="less" scoped>
-/* @component-namespace cat {
-  @component toast {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    max-width: 80%;
-  }
-} */
 .cat-toast {
   position: fixed;
   display: block;
@@ -26,6 +18,7 @@
   padding: 10px;
   word-wrap: break-word;
   transition: opacity 0.3s linear;
+
   .cat-toast-text {
     font-size: 14px;
     display: block;
@@ -73,7 +66,7 @@ export default {
   },
   data() {
     return {
-      visible: true
+      visible: false
     };
   },
   computed: {

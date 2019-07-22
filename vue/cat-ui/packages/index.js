@@ -1,13 +1,16 @@
 import Toast from './toast';
+import Button from './button';
+import foldList from './foldList'
 
 const components = [
-    
+    Button,
+    foldList
 ];
 
 
 const install = function (Vue) {
     if (install.installed) return;
-    install.installed = true;
+    // install.installed = true;
     components.map(component => {
         Vue.component(component.name, component);
     });
@@ -18,9 +21,13 @@ const install = function (Vue) {
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
 }
+// 按需引用{}的export
 export {
-    Toast
+    Toast,
+    Button,
+    foldList
 };
+// 全局引用安装install
 export default{
     install,
     ...components

@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <!-- <router-link ></router-link> -->
+
+    <Toast/>
+    <FoldList/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Toast from './components/Toast.vue'
+import FoldList from './components/foldList.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Toast,
+    FoldList
   },
   created(){
   }
@@ -19,11 +24,6 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>

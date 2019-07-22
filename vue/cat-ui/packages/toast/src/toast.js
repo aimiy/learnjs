@@ -78,11 +78,13 @@ let Toast = (options = {}) => {
     document.body.appendChild(instance.$el);
     instance.message = typeof options === 'string' ? options : options.message;
     instance.position = options.position || 'middle';
+    instance.visible = true;
     Vue.nextTick(() => {
-        
         setTimeout(() => {
-            instance.close();
-            console.log(12);
+            // instance.close();
+            instance.visible = false;
+            instance.$el.addEventListener('transitionend', removeDom);
+            // console.log(12);
         }, duration);
     })
 }
