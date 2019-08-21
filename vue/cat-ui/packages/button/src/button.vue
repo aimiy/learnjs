@@ -1,25 +1,26 @@
 <template>
-<button class="cat-button" :class="['cat-button--' + type]" @click="handleClick"><slot></slot></button>
-  
+  <button class="cat-button" :class="['cat-button--' + type]" @click="handleClick">
+    <slot></slot>
+  </button>
 </template>
 <style lang="less" scoped>
 @import "../../assets/style.less";
 
-.cat-button{
-    appearance: none;
-    background: #fff;
-    border-radius: 4px;
-    border: 0;
-    font-size: 15px;
-    padding: 5px 10px;
+.cat-button {
+  appearance: none;
+  background: #fff;
+  border-radius: 4px;
+  border: 0;
+  font-size: 15px;
+  padding: 5px 10px;
 }
-.cat-button--primary{
-    color:@button-primary-color;
-    background-color: @button-primary-background-color;
+.cat-button--primary {
+  color: @theme-red-color;
+  background-color: @theme-red-background-light;
 }
 
-.cat-button:hover{
-    background: #cecece;
+.cat-button:hover {
+  background: #cecece;
 }
 </style>
 
@@ -27,30 +28,22 @@
 export default {
   name: "cat-button",
   props: {
-      type:{
-          type:String,
-          defaule:'default',
-          validator(value){
-              return[
-                  'default',
-                  'danger',
-                  'primary',
-              ].indexOf(value) >-1;
-          }
+    type: {
+      type: String,
+      defaule: "default",
+      validator(value) {
+        return ["default", "danger", "primary"].indexOf(value) > -1;
       }
+    }
   },
   data() {
-    return {
-      
-    };
+    return {};
   },
-  computed: {
-    
-  },
-  methods:{
-      handleClick(evt){
-          this.$emit('click',evt)
-      }
+  computed: {},
+  methods: {
+    handleClick(evt) {
+      this.$emit("click", evt);
+    }
   }
 };
 </script>

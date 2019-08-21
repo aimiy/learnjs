@@ -8,24 +8,25 @@
 </template>
 <style lang="less" scoped>
 .cat-fold-card {
-//   position: relative;
+  //   position: relative;
   margin: 5px;
   padding: 8px;
-  border: 1px solid #cecece;
-  border-radius: 2px;
   font-size: 16px;
-  overflow:hidden;
+  overflow: hidden;
   .cat-title {
+    border: 1px solid #cecece;
+    border-radius: 2px;
   }
-  .cat-title:after{
-      content: ">";
-      float: right;
-      margin-right: 5px;
+  .cat-title:after {
+    content: ">";
+    float: right;
+    margin-right: 5px;
   }
   .cat-content {
     // position: absolute;
-    top: 25px;
-    left: 0;
+    // top: 25px;
+    // left: 0;
+    transform: translateY(-50px);
   }
 }
 </style>
