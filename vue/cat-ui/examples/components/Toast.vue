@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <cat-button type="primary" @click="showMiddle">点击提示</cat-button>
+    <cat-button type="primary" @click="showTop">提示top位</cat-button>
+    <cat-button type="primary" @click="showMiddle">点击middle位</cat-button>
+    <cat-button type="primary" @click="showBottom">提示bottom位</cat-button>
+    <cat-button type="primary" @click="showMiddle">点击提示带icon</cat-button>
   </div>
 </template>
 
@@ -10,32 +13,33 @@ import { Toast } from "../../packages/index.js";
 export default {
   name: "HelloWorld",
   methods: {
+    showTop(){
+      this.$toast({
+        message: "全局引用",
+        position: "top",
+        duration: 5000
+      });
+    },
     showMiddle() {
       this.$toast({
         message: "全局引用",
         position: "middle",
         duration: 5000
       });
+    },
+    showBottom(){
+      this.$toast({
+        message: "全局引用",
+        position: "bottom",
+        duration: 5000
+      });
     }
   },
   created() {
-    Toast({
-      message: "按需引用",
-      position: "top",
-      duration: 3000
-    });
-
-    this.$toast({
-      message: "ceshi",
-      position: "bottom",
-      duration: 4000
-    });
   }
 };
 </script>
 
 <style scoped>
-.hello {
-  width: 200px;
-}
+
 </style>

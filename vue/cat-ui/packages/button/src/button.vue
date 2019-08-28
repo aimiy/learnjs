@@ -1,5 +1,10 @@
 <template>
-  <button class="cat-button" :class="['cat-button--' + type]" @click="handleClick">
+  <button
+    class="cat-button"
+    :disabled="disabled"
+    :class="['cat-button--' + type,'cat-button--' + size,{'is--disabled':disabled,'is--plain':plain}]"
+    @click="handleClick"
+  >
     <slot></slot>
   </button>
 </template>
@@ -9,18 +14,51 @@
 .cat-button {
   appearance: none;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 2px;
   border: 0;
   font-size: 15px;
-  padding: 5px 10px;
 }
+.cat-button--default {
+  color: @theme-deep;
+  background-color: @theme-white-color;
+  border: 1px solid @theme-color;
+}
+
 .cat-button--primary {
-  color: @theme-red-color;
-  background-color: @theme-red-background-light;
+  color: @theme-white-color;
+  background-color: @theme-normal;
+}
+.cat-button--primary.is--plain {
+  color: @theme-normal;
+  border: 1px solid @theme-normal;
+  background-color: @theme-white-color;
+}
+.cat-button--danger {
+  color: @theme-white-color;
+  background-color: @theme-red-deep;
+}
+.cat-button--danger.is--plain {
+  color: @theme-red-deep;
+  border: 1px solid @theme-red-deep;
+  background-color: @theme-white-color;
+}
+.cat-button--large {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+.cat-button--normal {
+  padding: 10px 20px;
+}
+.cat-button--small {
+  padding: 6px 13px;
 }
 
 .cat-button:hover {
-  background: #cecece;
+  opacity: 0.6;
+}
+.is--disabled {
+  opacity: 0.6;
 }
 </style>
 
@@ -30,10 +68,25 @@ export default {
   props: {
     type: {
       type: String,
-      defaule: "default",
+      default: "default",
       validator(value) {
         return ["default", "danger", "primary"].indexOf(value) > -1;
       }
+    },
+    size: {
+      type: String,
+      default: "large",
+      validator(value) {
+        return ["large", "normal", "small"].indexOf(value) > -1;
+      }
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    plain: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
