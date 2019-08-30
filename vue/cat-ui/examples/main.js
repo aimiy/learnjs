@@ -3,14 +3,9 @@ import App from './App.vue'
 import router from './router'
 import catUI from "../packages/index.js";
 
-
-
 Vue.use(catUI);
-console.log(catUI);
 
 Vue.config.productionTip = false
-
-
 
 new Vue({
   render: h => h(App),

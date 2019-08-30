@@ -1,10 +1,12 @@
 import Toast from './toast';
 import Button from './button';
 import foldList from './foldList'
+import Cell from './cell'
 
 const components = [
     Button,
-    foldList
+    foldList,
+    Cell
 ];
 
 
@@ -25,7 +27,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 export {
     Toast,
     Button,
-    foldList
+    foldList,
+    Cell
 };
 // 全局引用安装install
 export default{

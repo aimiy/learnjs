@@ -1,6 +1,6 @@
 {
   "name": "cat-ui-f",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "my ui based on vue",
   "main": "lib/cat-ui.umd.min.js",
   "private": false,

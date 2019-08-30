@@ -1,23 +1,29 @@
 <template>
   <div>
-    <router-link to="/Button">Button</router-link>
-    <router-link to="/Toast">Toast</router-link>
-    <!-- <Button/> -->
-    <!-- <Toast/> -->
-    <!-- <FoldList/> -->
+    <cat-cell title="按钮">
+      测试<router-link to="/Button">Button</router-link>
+    </cat-cell>
+    <cat-cell title="提示">
+      <router-link to="/Toast">Toast</router-link>
+    </cat-cell>
+    <cat-cell title="cell" @click="goto('Cell')"></cat-cell>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Index',
-  components: {
+  name: "Index",
+  components: {},
+  methods:{
+    goto(name){
+      this.$router.push(name);
+    }
   },
-  created(){
+  created() {
+    
   }
-}
+};
 </script>
 
 <style>
-
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <draggable ref="dra" title="test" @con="con1" />
+    <cat-button type="danger" size="large">primary</cat-button>
   </div>
 </template>
 
@@ -21,6 +22,13 @@ export default {
       console.log(987);
       this.$refs["dra"].$con();
     }
+  },
+  created(){
+    this.$toast({
+        message: "全局引用",
+        position: "bottom",
+        duration: 5000
+      });
   }
 };
 </script>
