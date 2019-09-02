@@ -5,6 +5,7 @@
     :class="['cat-button--' + type,'cat-button--' + size,{'is--disabled':disabled,'is--plain':plain}]"
     @click="handleClick"
   >
+  <i :class="'icon-' + icon" v-if="icon"></i>
     <slot></slot>
   </button>
 </template>
@@ -17,6 +18,11 @@
   border-radius: 2px;
   border: 0;
   font-size: 15px;
+  i{
+    font-size: inherit;
+    margin-right: 5px;
+    vertical-align: text-bottom;
+  }
 }
 .cat-button--default {
   color: @theme-deep;
@@ -42,6 +48,7 @@
   border: 1px solid @theme-red-deep;
   background-color: @theme-white-color;
 }
+
 .cat-button--large {
   display: block;
   width: 100%;
@@ -49,11 +56,17 @@
 }
 .cat-button--normal {
   padding: 10px 20px;
+  font-size: 14px;
 }
 .cat-button--small {
   padding: 6px 13px;
+  font-size: 13px;
 }
-
+.cat-button--text{
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
 .cat-button:hover {
   opacity: 0.6;
 }
@@ -87,6 +100,10 @@ export default {
     plain: {
       type: Boolean,
       default: false
+    },
+    icon:{
+      type:String,
+      default:""
     }
   },
   data() {

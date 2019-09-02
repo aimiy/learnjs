@@ -8,9 +8,13 @@
     <cat-button type="primary" size="normal">primary</cat-button>
     <cat-button type="danger" size="normal">danger</cat-button>
 
+    <cat-button icon="headphones" size="normal">default</cat-button>
+    <cat-button icon="headphones" type="primary" size="normal">primary</cat-button>
+    <cat-button icon="headphones" type="danger" size="normal">danger</cat-button>
+
     <cat-button size="small">default</cat-button>
     <cat-button type="primary" size="small">primary</cat-button>
-    <cat-button type="danger" size="small">danger</cat-button>
+    <cat-button icon="headphones" type="danger" size="small">danger</cat-button>
 
     <cat-button :disabled="true">default</cat-button>
     <cat-button type="primary" :disabled="true">primary</cat-button>

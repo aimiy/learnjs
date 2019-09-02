@@ -2,11 +2,14 @@ import Toast from './toast';
 import Button from './button';
 import foldList from './foldList'
 import Cell from './cell'
+import Header from './header'
+import "./assets/fonts/style.css"
 
 const components = [
     Button,
     foldList,
-    Cell
+    Cell,
+    Header
 ];
 
 
@@ -28,7 +31,8 @@ export {
     Toast,
     Button,
     foldList,
-    Cell
+    Cell,
+    Header
 };
 // 全局引用安装install
 export default{
