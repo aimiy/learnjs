@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="catbtnwrapper">
+    <cat-header back title="按钮"></cat-header>
     <cat-button>default</cat-button>
     <cat-button type="primary" size="large">primary</cat-button>
     <cat-button type="danger" size="large">danger</cat-button>
@@ -43,6 +44,6 @@ export default {
 
 <style scoped>
 .cat-button{
-  margin: 10px;
+  margin: 10px 0;
 }
 </style>

@@ -66,6 +66,8 @@
   display: inline-block;
   width: auto;
   height: auto;
+  color: inherit;
+  background: inherit;
 }
 .cat-button:hover {
   opacity: 0.6;
@@ -83,7 +85,7 @@ export default {
       type: String,
       default: "default",
       validator(value) {
-        return ["default", "danger", "primary"].indexOf(value) > -1;
+        return ["default", "danger", "primary","text"].indexOf(value) > -1;
       }
     },
     size: {

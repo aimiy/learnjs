@@ -1,6 +1,7 @@
 <template>
 <header class="cat-header" :class="[{'is--fixed':fixed}]">
     <span class="left">
+        <cat-button @click="backto" v-if="backBool" :icon="backIcon?'circle-left':''" type="text">{{backText}}</cat-button>
     <slot name="left"></slot>
     </span>
     <span class="title">{{title}}</span>
@@ -48,9 +49,25 @@ export default {
     fixed:{
       type:Boolean,
       default:false
-    }
+    },
+    backIcon:{
+        type:Boolean,
+        default:false
+    },
+    backText:{
+        type:String,
+        default:""
+    },
+  },
+  computed:{
+      backBool(){
+          return this.backIcon || this.backText.length>0;
+      }
   },
   methods:{
+      backto(){
+          this.$router.go(-1)
+      }
       
   }
 };

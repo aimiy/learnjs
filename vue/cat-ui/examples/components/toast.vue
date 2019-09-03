@@ -16,8 +16,7 @@ export default {
     showTop(){
       this.$toast({
         message: "全局引用",
-        position: "top",
-        duration: 5000
+        position: "top"
       });
     },
     showMiddle() {
