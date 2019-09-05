@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <cat-header backIcon></cat-header>
     <cat-button type="primary" @click="showTop">提示top位</cat-button>
     <cat-button type="primary" @click="showMiddle">点击middle位</cat-button>
     <cat-button type="primary" @click="showBottom">提示bottom位</cat-button>

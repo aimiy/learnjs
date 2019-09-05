@@ -1,6 +1,6 @@
 <template>
   <div class="catbtnwrapper">
-    <cat-header back title="按钮"></cat-header>
+    <cat-header backIcon title="按钮"></cat-header>
     <cat-button>default</cat-button>
     <cat-button type="primary" size="large">primary</cat-button>
     <cat-button type="danger" size="large">danger</cat-button>

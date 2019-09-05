@@ -20,7 +20,6 @@
   font-size: 15px;
   i{
     font-size: inherit;
-    margin-right: 5px;
     vertical-align: text-bottom;
   }
 }

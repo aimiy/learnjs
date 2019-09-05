@@ -1,11 +1,15 @@
 <template>
   <div class="cat-cell" @click="handleClick">
-      <div class="icon">
-    <slot name="icon"></slot>        
-      </div>
+    <div class="left" v-if="icon">
+      <slot name="icon"></slot>
+    </div>
     <div class="title">{{title}}</div>
     <div class="content">
+      {{value}}
       <slot></slot>
+      <div class="right">
+        <cat-button type="text" icon="ctrl"></cat-button>
+      </div>
     </div>
   </div>
 </template>
@@ -13,25 +17,30 @@
 @import "../../assets/style.less";
 
 .cat-cell {
+  height: 40px;
+  line-height: 40px;
+  .left {
+    display: inline-block;
+    float: left;
     height: 40px;
-    line-height: 40px;
-    .icon{
-        display: inline-block;
-        float: left;
-        height: 100%;
-        img{
-            height: 80%;
-            width: auto;
-        }
+    width: 40px;
+    img {
+      height: 80%;
+      width: auto;
     }
-    .title{
-        float: left;
+  }
+  .title {
+    float: left;
+  }
+  .content {
+    float: right;
+    color: @theme-light;
+    font-size: 14px;
+    .right {
+      display: inline-block;
+      transform: rotate(90deg);
     }
-    .content{
-        float: right;
-        color: @theme-light;
-        font-size: 14px;
-    }
+  }
 }
 </style>
 <script>
@@ -41,12 +50,20 @@ export default {
     title: {
       type: String,
       default: ""
+    },
+    value: {
+      type: String,
+      default: ""
+    },
+    islink: {
+      type: String,
+      default: ""
     }
   },
-  methods:{
-      handleClick(evt){
-          this.$emit("click", evt)
-      }
+  methods: {
+    handleClick(evt) {
+      this.$emit("click", evt);
+    }
   }
 };
 </script>
