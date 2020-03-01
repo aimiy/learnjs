@@ -5,7 +5,7 @@ var livereload = require('gulp-livereload');
 
 var serverConfig = {
     root: "./",
-    port: 2323,
+    port: 8090,
     livereload: true,
     host: '::'
 }
@@ -15,7 +15,7 @@ gulp.task('server',function(){
 
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch(['src/*.html'],function(event){
+    gulp.watch(['src/*.html','src/leetcode/*.html'],function(event){
         livereload.changed(event.path);
     })
 });

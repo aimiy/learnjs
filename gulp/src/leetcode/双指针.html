@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双指针</title>
+</head>
+
+<body>
+    <h1>167两数之和 II - 输入有序数组</h1>
+    <!-- <script>
+        var twoSum = function (numbers, target) {
+            let i = 0; j = 1;
+            while (numbers[i] + numbers[j] !== target) {
+                if (numbers[i] + numbers[j] < target) {
+                    j += 1;
+                } else {
+                    i += 1;
+                    j = i + 1;
+                }
+            }
+            return [i + 1, j + 1]
+        };
+    </script>
+    <script>
+        var twoSum = function (numbers, target) {
+            let i = 0; j = numbers.length - 1;
+            while (i < j) {
+                let num = numbers[i] + numbers[j];
+                if (num === target) {
+                    return [i + 1, j + 1]
+                } else if (num < target) {
+                    i++;
+                } else {
+                    j--;
+                }
+            }
+            return null;
+        };
+    </script> -->
+    <h1>633平方数之和</h1>
+    <!-- <script>
+        var judgeSquareSum = function (c) {
+            let i = 0;
+            let j = parseInt(Math.sqrt(c));
+            while (i <= j) {
+                let powSum = i * i + j * j;
+                if (powSum == c) {
+                    return true;
+                } else if (powSum > c) {
+                    j--;
+                } else {
+                    i++;
+                }
+            }
+            return false;
+        };
+    </script> -->
+    <h1>345反转字符串中的元音字母</h1>
+    <!-- <script>
+        var reverseVowels = function (s) {
+            let arr = s.split("");
+            let i = 0;
+            let j = arr.length - 1;
+            while (i < j) {
+                let isI = isAEIOU(arr[i]);
+                let isJ = isAEIOU(arr[j]);
+                if (isI && isJ) {
+                    let l = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = l;
+                    i++;
+                    j--;
+                } else if (isI && !isJ) {
+                    j--;
+                } else if (!isI && isJ) {
+                    i++;
+                } else {
+                    i++;
+                    j--;
+                }
+            }
+            return arr.join("");
+        };
+
+        function isAEIOU(s) {
+            let searcharr = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+            return searcharr.findIndex((key, index) => {
+                return key === s;
+            }) !== -1;
+        }
+    </script> -->
+    <h1>680验证回文字符串 Ⅱ</h1>
+    <!-- <script>
+        var validPalindrome = function (s) {
+            let arr = s.split("");
+            let i = 0;
+            let j = arr.length - 1;
+            let isOne = false;
+            let isCan = true;
+            while (i < j) {
+                if (arr[i] === arr[j]) {
+                    i++;
+                    j--;
+                } else {
+                    if (!isOne) {
+                        if (i + 1 < j) {
+                            if (arr[i + 1] === arr[j] && arr[i + 2] === arr[j - 1]) {
+                                isOne = true;
+                                i += 2;
+                                j--;
+                            } else if (arr[i] === arr[j - 1] && arr[i + 1] === arr[j - 2]) {
+                                isOne = true;
+                                j -= 2;
+                                i++;
+                            } else {
+                                isCan = false;
+                                return isCan;
+                            }
+                        } else {
+                            if (arr[i + 1] === arr[j]) {
+                                isOne = true;
+                                i += 2;
+                                j--;
+                            } else if (arr[i] === arr[j - 1]) {
+                                isOne = true;
+                                j -= 2;
+                                i++;
+                            } else {
+                                isCan = false;
+                                return isCan;
+                            }
+                        }
+
+                    } else {
+                        isCan = false;
+                        return isCan;
+                    }
+                }
+            }
+            return isCan;
+        };
+    </script> -->
+    <h1>88合并两个有序数组524</h1>
+    <!-- <script>
+        var merge = function (nums1, m, nums2, n) {
+            let i = m - 1;
+            let validLength = m+n-1;
+            
+            for (let j = n - 1; j >= 0; j--) {
+                while (i >= 0) {
+                    if (nums2[j] >= nums1[i]) {
+                        nums1[validLength] = nums2[j];
+                        validLength--;
+                        break;
+                    }else{
+                        nums1[validLength--] = nums1[i--];
+                    }
+                }
+                if(validLength>=0 && i<0){
+                    nums1[validLength] = nums2[j];
+                    validLength--;
+                }
+            }
+            return nums1;
+        };
+        console.log(merge([1,0], 1, [2], 1))
+        console.log(merge([4,5,0,0], 2, [1,2], 2))
+    </script> -->
+    <!-- <script>
+        var merge = function (nums1, m, nums2, n) {
+            let i = m - 1;
+            let j = n-1;
+            let validLength = m+n-1;
+            while(i>=0 || j>=0){
+                if(i<0){
+                    nums1[validLength--] = nums2[j--];
+                }else if(j<0){
+                    nums1[validLength--] = nums1[i--];
+                }else if(nums2[j]>nums1[i]){
+                    nums1[validLength--] = nums2[j--];
+                }else {
+                    nums1[validLength--] = nums1[i--];
+                }
+            }
+            return nums1;
+        };
+        console.log(merge([1,0], 1, [2], 1))
+        console.log(merge([4,5,0,0], 2, [1,2], 2))
+    </script> -->
+    <h1>141环形链表</h1>
+    <!-- <script>
+        var hasCycle = function(head) {
+};
+    </script> -->
+    <h1>524通过删除字母匹配到字典里最长单词</h1>
+    错点：字典序
+    <script>
+        var findLongestWord = function (s, d) {
+            let lWord = "";
+            for (let item of d) {
+                let cL = item.length;
+                let lL = lWord.length;
+                if (lL > cL || (lL === cL && lWord.charCodeAt() < item.charCodeAt())) {
+                    continue;
+                }
+                if (isHave(s, item)) {
+                    lWord = item;
+                }
+
+            }
+            return lWord;
+        };
+        function isHave(str, s) {
+            let i = 0;
+            let j = 0;
+            while (j < s.length && i < str.length) {
+                if (s[j] === str[i]) {
+                    j++;
+                }
+                i++;
+            }
+            return j === s.length;
+        }
+        console.log(findLongestWord("abpcplea", ["a", "b", "c"]))
+    </script>
+</body>
+
+
+</html>
