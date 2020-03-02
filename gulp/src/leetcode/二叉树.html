@@ -9,19 +9,108 @@
 
 <body>
     <h1>104树的高度</h1>
-    <script>
+    <!-- <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 9,
+                left: null,
+                right: null
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15,
+                    left: null,
+                    right: null
+                },
+                right: {
+                    val: 7,
+                    left: null,
+                    right: null
+                }
+            }
+        }
         // 递归
         // var maxDepth = function (root) {
         //     if (root == null) return 0;
         //     return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
         // };
-    </script>
-    <script>
         // 迭代
-
+        var maxDepth = function (root) {
+            let depth = 0;
+            let stack = [];
+            if (root !== null) {
+                root.current_dep = 1;
+            }
+            stack.push(root);
+            while (stack.length !== 0) {
+                console.log(JSON.parse(JSON.stringify(stack)));
+                let node = stack.pop();
+                if (node !== null) {
+                    depth = Math.max(depth,node.current_dep);
+                    if (node.right) {
+                        node.right.current_dep = node.current_dep+1;
+                        stack.push(node.right)
+                    }
+                    if (node.left) {
+                        node.left.current_dep = node.current_dep+1;
+                        stack.push(node.left)
+                    }
+                }
+            }
+            return depth;
+        };
+        console.log(maxDepth(tree))
+    </script> -->
+    <h1>110平衡二叉树</h1>
+    <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 9,
+                left: null,
+                right: null
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15,
+                    left: null,
+                    right: null
+                },
+                right: {
+                    val: 7,
+                    left: {
+                        val:3,
+                        left:null,
+                        right:null
+                    },
+                    right: null
+                }
+            }
+        }
+        var isBalanced = function (root) {
+            if(root ===null){
+                return true;
+            }
+            if(Math.abs(height(root.left)-height(root.right))>1){
+                return false;
+            }
+            return isBalanced(root.left) && isBalanced(root.right)
+        };
+        function height(node) {
+            if (node === null) return 0;
+            return Math.max(height(node.left), height(node.right)) + 1;
+        }
+        console.log(isBalanced(tree))
     </script>
-    <h1>110</h1>
     <h1>543</h1>
+    <h1>226</h1>
+    <h1>617</h1>20200302
+    <h1>112</h1>
+    <h1>437</h1>20200303
+    
 
 </body>
 
