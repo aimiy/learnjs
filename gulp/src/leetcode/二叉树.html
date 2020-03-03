@@ -64,12 +64,20 @@
         console.log(maxDepth(tree))
     </script> -->
     <h1>110平衡二叉树</h1>
-    <script>
+    <!-- <script>
         let tree = {
             val: 3,
             left: {
                 val: 9,
-                left: null,
+                left: {
+                    val:12,
+                    left:{
+                        val:23,
+                        left:null,
+                        right:null
+                    },
+                    right:null
+                },
                 right: null
             },
             right: {
@@ -90,27 +98,190 @@
                 }
             }
         }
-        var isBalanced = function (root) {
-            if(root ===null){
-                return true;
+        // 从上到下的递归暴力，每一个节点的高度都计算了
+        // var isBalanced = function (root) {
+        //     if(root ===null){
+        //         return true;
+        //     }
+        //     if(Math.abs(height(root.left)-height(root.right))>1){
+        //         return false;
+        //     }
+        //     return isBalanced(root.left) && isBalanced(root.right)
+        // };
+        // function height(node) {
+        //     console.log(node)
+        //     if (node === null) return 0;
+        //     return Math.max(height(node.left), height(node.right)) + 1;
+        // }
+        // 从下到上的递归，多加了判断，假如子节点不平衡，直接得出父节点不平衡，不用再计算祖宗的其他节点
+        // var isBalanced = function(root){
+        //     return depth(root) !=-1;
+        // }
+        // function depth(node){
+        //     console.log(node)
+        //     if(node === null)
+        //     return 0;
+        //     let left = depth(node.left);
+        //     if(left ===-1) 
+        //     return -1;
+        //     let right = depth(node.right);
+        //     if(right ===-1)
+        //     return -1;
+        //     return Math.abs(left - right) < 2 ? Math.max(left, right) + 1 : -1;
+        // }
+        // console.log(isBalanced(tree))
+    </script> -->
+    <h1>543二叉树的直径</h1>
+    <!-- <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 9,
+                left: {
+                    val: 12,
+                    left: {
+                        val: 23,
+                        left: null,
+                        right: null
+                    },
+                    right: null
+                },
+                right: null
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15,
+                    left: null,
+                    right: null
+                },
+                right: {
+                    val: 7,
+                    left: {
+                        val: 3,
+                        left: null,
+                        right: null
+                    },
+                    right: null
+                }
             }
-            if(Math.abs(height(root.left)-height(root.right))>1){
-                return false;
-            }
-            return isBalanced(root.left) && isBalanced(root.right)
+        }
+        // 递归中的递归，高度计算过于冗余，本身计算高度就是暴力计算，每一个节点都到达过，所以直接在暴力计算高度函数中计算各节点路径，统计出最大路径
+        // 简约
+        let largestLength;
+        var diameterOfBinaryTree = function (root) {
+            largestLength = 1;
+            height(root)
+            return largestLength - 1;
         };
         function height(node) {
-            if (node === null) return 0;
-            return Math.max(height(node.left), height(node.right)) + 1;
+            if (node == null) {
+                return 0
+            }
+            let L = height(node.left);
+            let R = height(node.right);
+            largestLength = Math.max(largestLength, L + R + 1)
+            return Math.max(L, R) + 1;
         }
-        console.log(isBalanced(tree))
-    </script>
-    <h1>543</h1>
-    <h1>226</h1>
-    <h1>617</h1>20200302
+        console.log(diameterOfBinaryTree(tree));
+    </script> -->
+    <h1>226翻转二叉树</h1>
+    <!-- <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 9,
+                left: {
+                    val: 12,
+                    left: {
+                        val: 23,
+                        left: null,
+                        right: null
+                    },
+                    right: null
+                },
+                right: null
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15,
+                    left: null,
+                    right: null
+                },
+                right: {
+                    val: 7,
+                    left: {
+                        val: 3,
+                        left: null,
+                        right: null
+                    },
+                    right: null
+                }
+            }
+        }
+        var invertTree = function (root) {
+            if(root == null){
+                return null;
+            }
+            console.log(root)
+            let left = invertTree(root.left);
+            let right = invertTree(root.right);
+            root.right = left;
+            root.left = right;
+            return root;
+        };
+        console.log(invertTree(tree))
+    </script> -->
+    <h1>617合并二叉树</h1>
+    <!-- <script>
+        let tree1 = {
+            val: 1,
+            left: {
+                val: 3,
+                left: {
+                    val: 5
+                }
+            },
+            right: {
+                val: 2
+            }
+        }
+        let tree2 = {
+            val: 2,
+            left: {
+                val: 1,
+                right: {
+                    val: 4
+                }
+            },
+            right: {
+                val: 3,
+                right: {
+                    val: 7
+                }
+            }
+        }
+
+        var mergeTrees = function (t1, t2) {
+            if (t1 == null && t2 == null) {
+                return null;
+            } else if (t1 == null) {
+                return t2;
+            } else if (t2 == null) {
+                return t1;
+            } else {
+                t1.val += t2.val;
+                t1.left = mergeTrees(t1.left, t2.left);
+                t1.right = mergeTrees(t1.right, t2.right);
+                return t1;
+            }
+        };
+        console.log(mergeTrees(tree1, tree2))
+    </script> -->
     <h1>112</h1>
     <h1>437</h1>20200303
-    
+
 
 </body>
 
