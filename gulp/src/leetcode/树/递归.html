@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>104树的高度</h1>
+    <h1>104树的高度</h1>20200229
     <!-- <script>
         let tree = {
             val: 3,
@@ -63,7 +63,7 @@
         };
         console.log(maxDepth(tree))
     </script> -->
-    <h1>110平衡二叉树</h1>
+    <h1>110平衡二叉树</h1>20200301
     <!-- <script>
         let tree = {
             val: 3,
@@ -131,7 +131,7 @@
         // }
         // console.log(isBalanced(tree))
     </script> -->
-    <h1>543二叉树的直径</h1>
+    <h1>543二叉树的直径</h1>20200301
     <!-- <script>
         let tree = {
             val: 3,
@@ -185,7 +185,7 @@
         }
         console.log(diameterOfBinaryTree(tree));
     </script> -->
-    <h1>226翻转二叉树</h1>
+    <h1>226翻转二叉树</h1>20200302
     <!-- <script>
         let tree = {
             val: 3,
@@ -233,7 +233,7 @@
         };
         console.log(invertTree(tree))
     </script> -->
-    <h1>617合并二叉树</h1>
+    <h1>617合并二叉树</h1>20200302
     <!-- <script>
         let tree1 = {
             val: 1,
@@ -279,7 +279,7 @@
         };
         console.log(mergeTrees(tree1, tree2))
     </script> -->
-    <h1>112路径总和</h1>
+    <h1>112路径总和</h1>20200303
     <!-- <script>
         let tree = {
             val: 5,
@@ -325,8 +325,137 @@
         };
         console.log(hasPathSum(tree, 22))
     </script> -->
-    <h1>437</h1>
+    <h1>437路径总和 III</h1>0303
+    <script>
+        // let tree = {
+        //     val: 10,
+        //     left: {
+        //         val: 5,
+        //         left: {
+        //             val: 3,
+        //             left: {
+        //                 val: 3
+        //             },
+        //             right: {
+        //                 val: -2
+        //             }
+        //         },
+        //         right: {
+        //             val: 2,
+        //             right: {
+        //                 val: 1
+        //             }
+        //         }
+        //     },
+        //     right: {
+        //         val: -3,
+        //         right: {
+        //             val: 11
+        //         }
+        //     }
+        // };
+        let tree = {
+            val:1
+        }
+        // 用到了深拷贝，性能太差
+        // var pathSum = function (root, sum) {
+        //     return recursionPathSum(root,[0],sum);
+        // };
+        // function recursionPathSum(node, prefixSumArr, target){
+        //     if(node == null){
+        //         return 0;
+        //     }
+        //     let res = 0;
+        //     let arr = JSON.parse(JSON.stringify(prefixSumArr));
+        //     let currSum = arr[arr.length-1];
+        //     arr.push(currSum +=node.val);
+        //     arr.forEach((element,key) => {
+        //         if(element === currSum-target && key !==arr.length-1){
+        //             res++;
+        //         }
+        //     });
+        //     console.log(arr,res)
+        //     res += recursionPathSum(node.left,arr,target);
+        //     res += recursionPathSum(node.right,arr,target);
+        //     return res;
+        // }
 
+        // 改进，上一个方法深拷贝是每一个节点都有自己的数组，这个方法公用一个数组，但记录了层次，不再push，是覆盖当前层次节点的值。因此不再暴力遍历，因为会有多余的值，只遍历当前层次p之前的数组
+        // var pathSum = function (root, sum) {
+        //     return recursionPathSum(root, [0], sum, 0);
+        // };
+        // function recursionPathSum(node, arr, target, p) {
+        //     if (node == null) {
+        //         return 0;
+        //     }
+        //     let tmp = node.val;
+        //     let res = node.val === target ? 1 : 0;
+        //     for (let i = p - 1; i >= 0; i--) {
+        //         tmp += arr[i];
+        //         if (tmp == target) {
+        //             res++;
+        //         }
+        //     }
+        //     arr[p] = node.val;
+        //     console.log( arr, res)
+        //     res += recursionPathSum(node.left, arr, target, p + 1);
+        //     res += recursionPathSum(node.right, arr, target, p + 1);
+        //     return res;
+        // }
+        var pathSum = function (root, sum) {
+            return recursionPathSum(root,[0],sum,0);
+        };
+        function recursionPathSum(node, arr, target,p){
+            if(node == null){
+                return 0;
+            }
+            let res = 0;
+            let currSum = arr[p];
+            arr[p+1] = (currSum +=node.val);
+            for(let i=0;i<=p;i++){
+                if(arr[i] === currSum-target ){
+                    res++;
+                }
+            }
+            // console.log(arr,res,p)
+            res += recursionPathSum(node.left,arr,target,p+1);
+            res += recursionPathSum(node.right,arr,target,p+1);
+            return res;
+        }
+        console.log(pathSum(tree, 0))
+    </script>
+    <h1>572</h1>0304
+    <script>
+
+    </script>
+    <h1>101</h1>0304
+    <script>
+
+    </script>
+    <h1>111</h1>0305
+    <script>
+
+    </script>
+    <h1>404</h1>0305
+    <script>
+
+    </script>
+    <h1>687</h1>0306
+    <script>
+
+    </script>
+    <h1>337</h1>0306
+    <script>
+
+    </script>
+    <h1>671</h1>0307
+    <script>
+
+    </script>
+    <h1>637</h1>六20200307
+    <script>
+
+    </script>
 
 </body>
 
