@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>二叉树</title>
 </head>
+<script>
+
+    function printTree(root) {
+
+    }
+</script>
 
 <body>
     <h1>104树的高度</h1>20200229
@@ -326,7 +332,7 @@
         console.log(hasPathSum(tree, 22))
     </script> -->
     <h1>437路径总和 III</h1>0303
-    <script>
+    <!-- <script>
         // let tree = {
         //     val: 10,
         //     left: {
@@ -423,14 +429,83 @@
             return res;
         }
         console.log(pathSum(tree, 0))
-    </script>
-    <h1>572</h1>0304
+    </script> -->
+    <h1>572另一个树的子树</h1>0304
+    <!-- <script>
+        let s = {
+            val:3,
+            left:{
+                val:4,
+                left:{
+                    val:1
+                }
+            },
+            right:{
+                val:5,
+                left:{
+                    val:2
+                }
+            }
+        }
+        let t = {
+            val:3,
+            left:{
+                val:1
+            },
+            right:{
+                val:2,
+                
+            }
+        }
+        // let s={
+        //     val:1,
+        //     left:{
+        //         val:1
+        //     }
+        // }
+        // let t = {
+        //     val:1
+        // }
+        var isSubtree = function (s, t) {
+            // console.log(s,t)
+            if(s!=null){
+                return (s.val === t.val && equal(s,t)) || isSubtree(s.left,t) || isSubtree(s.right,t)
+            }
+            return false;
+        };
+        function equal(s,t){
+            if(s != null && t != null){
+                if(s.val === t.val){
+                    if(equal(s.left,t.left) && equal(s.right,t.right)){
+                        return true;
+                    }
+                }else{
+                    return false;
+                }
+            }else if(s != null){
+                return false;
+            }else if(t !=null){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        console.log(isSubtree(s,t))
+    </script> -->
+    <h1>101对称二叉树</h1>0304
     <script>
+        let tree = {
+            val: 1,
+            left: {
+                val: 2
+            },
+            right: {
+                val: 2
+            }
+        }
+        var isSymmetric = function (root) {
 
-    </script>
-    <h1>101</h1>0304
-    <script>
-
+        };
     </script>
     <h1>111</h1>0305
     <script>
