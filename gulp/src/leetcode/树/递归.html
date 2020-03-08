@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>二叉树</title>
+    <title>递归</title>
 </head>
 <script>
 
@@ -610,7 +610,53 @@
     </script> -->
     <h1>687最长同值路径</h1>0306
     <script>
+        let tree1 = {
+            val: 5,
+            left: {
+                val: 4,
+                left: {
+                    val: 1
+                },
+                right: {
+                    val: 1
+                }
+            },
+            right: {
+                val: 5,
+                right: {
+                    val: 5
+                },
+                right: {
+                    val: 5
+                }
+            }
+        }
+        let tree2 = {
+            val: 1,
+            left: {
+                val: 4,
+                left: {
+                    val: 4
+                },
+                right: {
+                    val: 4
+                }
+            },
+            right: {
+                val: 5,
+                right: {
+                    val: 5
+                },
+                right: {
+                    val: 5
+                }
+            }
+        }
+        var longestUnivaluePath = function (root) {
 
+        };
+        console.log(longestUnivaluePath(tree1))
+        console.log(longestUnivaluePath(tree2))
     </script>
     <h1>337</h1>0306
     <script>
@@ -620,10 +666,7 @@
     <script>
 
     </script>
-    <h1>637</h1>六20200307
-    <script>
-
-    </script>
+    
 
 </body>
 
