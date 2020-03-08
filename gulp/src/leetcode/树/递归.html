@@ -493,20 +493,40 @@
         console.log(isSubtree(s,t))
     </script> -->
     <h1>101对称二叉树</h1>0304
-    <script>
+    <!-- <script>
         let tree = {
             val: 1,
             left: {
-                val: 2
+                val: 2,
+                left: {
+                    val: 3
+                },
+                right: {
+                    val:4
+                }
             },
             right: {
-                val: 2
+                val: 2,
+                left: {
+                    val: null
+                },
+                right: {
+                    val: 3
+                }
             }
         }
         var isSymmetric = function (root) {
-
+            return isMirror(root, root)
         };
-    </script>
+        function isMirror(s, t) {
+            // console.log(s, t)
+            if(s== null && t == null) return true;
+            if(s== null || t == null) return false;
+            return s.val === t.val && isMirror(s.left, t.right) && isMirror(s.right, t.left);
+            
+        }
+        console.log(isSymmetric(tree));
+    </script> -->
     <h1>111</h1>0305
     <script>
 
