@@ -527,15 +527,88 @@
         }
         console.log(isSymmetric(tree));
     </script> -->
-    <h1>111</h1>0305
-    <script>
-
-    </script>
-    <h1>404</h1>0305
-    <script>
-
-    </script>
-    <h1>687</h1>0306
+    <h1>111二叉树的最小深度</h1>0305
+    <!-- <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 9
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15
+                },
+                right: {
+                    val: 7
+                }
+            }
+        }
+        // let tree = {
+        //     val:1,
+        //     left:{
+        //         val:2
+        //     }
+        // }
+        var minDepth = function (root) {
+            if(root == null){
+                return 0;
+            }
+            if(root.left == null || root.right == null){
+                return Math.max(minDepth(root.left),minDepth(root.right)) + 1;
+            }   
+            return Math.min(minDepth(root.left),minDepth(root.right)) +1;
+        };
+        console.log(minDepth(tree))
+    </script> -->
+    <h1>404左叶子之和</h1>0305
+    <!-- <script>
+        let tree = {
+            val: 0,
+            left: {
+                val: 2,
+                left: {
+                    val: 1,
+                    left:{
+                        val:5
+                    },
+                    right:{
+                        val:1
+                    }
+                }
+            },
+            right: {
+                val: 4,
+                left:{
+                    val:3,
+                    right:{
+                        val:6
+                    }
+                },
+                right:{
+                    val:-1,
+                    right:{
+                        val:8
+                    }
+                }
+            }
+        }
+        var sumOfLeftLeaves = function (root) {
+            console.log(root)
+            if (root == null) {
+                return 0;
+            }
+            if (root.left == null) {
+                return sumOfLeftLeaves(root.right);
+            }
+            if(root.left.left == null && root.left.right == null){
+                return root.left.val + sumOfLeftLeaves(root.right);
+            }
+            return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)
+        };
+        console.log(sumOfLeftLeaves(tree))
+    </script> -->
+    <h1>687最长同值路径</h1>0306
     <script>
 
     </script>
