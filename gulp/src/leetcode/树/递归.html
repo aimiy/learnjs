@@ -684,12 +684,84 @@
         console.log(longestUnivaluePath(tree1))
         console.log(longestUnivaluePath(tree3))
     </script> -->
-    <h1>337</h1>0306
+    <h1>337打家劫舍 III</h1>0306
+    <!-- <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 2,
+                right: {
+                    val: 3
+                }
+            },
+            right: {
+                val: 3,
+                right: {
+                    val: 1
+                }
+            }
+        };
+        let tree2 = {
+            val: 2,
+            left: {
+                val: 1,
+                right: {
+                    val: 4
+                }
+            },
+            right: {
+                val: 3
+            }
+        };
+        
+        var rob = function (root) {
+            console.log(root)
+            if (root == null) {
+                return 0;
+            }
+            let m1 = root.val;
+            if (root.left != null) {
+                m1 += rob(root.left.left) + rob(root.left.right);
+            }
+            if (root.right != null) {
+                m1 += rob(root.right.left) + rob(root.right.right);
+            }
+            let m2 = rob(root.left) + rob(root.right);
+            console.log(m1,m2)
+            return Math.max(m1, m2)
+        };
+        
+        console.log(rob(tree2));
+    </script> -->
+    <h1>671二叉树中第二小的节点</h1>0307
     <script>
+        let tree = {
+            val: 2,
+            left: {
+                val: 2
+            },
+            right: {
+                val: 5,
+                left: {
+                    val: 5
+                },
+                right: {
+                    val: 7
+                }
+            }
+        }
+        var findSecondMinimumValue = function (root) {
+            if(root == null){
+                return 0;
+            }
+            if(root.left != null){
+                if(root.val === root.left.val && root.val === root.right.val){
+                    
+                }
+            }
 
-    </script>
-    <h1>671</h1>0307
-    <script>
+        };
+        console.log(findSecondMinimumValue(tree))
 
     </script>
 </body>
