@@ -9,30 +9,76 @@
 
 <body>
     <h1>637二叉树的层平均值</h1>20200307
-    <script>
+    <!-- <script>
         let tree = {
-            val:3,
-            left:{
-                val:9
+            val: 3,
+            left: {
+                val: 9
             },
-            right:{
-                val:20,
-                left:{
-                    val:15
+            right: {
+                val: 20,
+                left: {
+                    val: 15
                 },
-                right:{
-                    val:7
+                right: {
+                    val: 7
                 }
             }
         };
         var averageOfLevels = function (root) {
-
+            let res = [];
+            if (root == null) {
+                return res;
+            }
+            let queen = [];
+            queen.push(root);
+            while (queen.length !== 0) {
+                let num = 0;
+                let size = queen.length;
+                for (let i = 0; i < size; i++) {
+                    let node = queen.pop();
+                    num += node.val;
+                    if (node.left != null) {
+                        queen.unshift(node.left);
+                    }
+                    if (node.right != null) {
+                        queen.unshift(node.right);
+                    }
+                }
+                res.push(num / size);
+            }
+            return res;
         };
         console.log(averageOfLevels(tree))
-    </script>
-    <h1>513</h1>20200308
+    </script> -->
+    <h1>513找树左下角的值</h1>20200308
     <script>
-
+        let tree = {
+            val: 3,
+            left: {
+                val: 9
+            },
+            right: {
+                val: 20,
+                left: {
+                    val: 15
+                },
+                right: {
+                    val: 7
+                }
+            }
+        };
+        var findBottomLeftValue = function (root) {
+            let queen = [];
+            queen.unshift(root);
+            while(queen.length !== 0){
+                root = queen.pop();
+                if(root.right != null) queen.unshift(root.right)
+                if(root.left != null) queen.unshift(root.left)
+            }
+            return root.val;
+        };
+        console.log(findBottomLeftValue(tree))
     </script>
 
 </body>
