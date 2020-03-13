@@ -15,6 +15,7 @@
    var flag = false;
    var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
    function fileChange(target){
+       console.log(target.files)
       var fileSize = 0;
          if (isIE && !target.files) {    // IE浏览器
             var filePath = target.value; // 获得上传文件的绝对路径

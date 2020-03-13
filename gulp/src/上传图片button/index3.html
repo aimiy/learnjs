@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <form action="/adfsdf/sadfsd" id="gform">
+        <input type="text" value="232" name="user">
+        
+        <input type="button" value="修改" onclick="btn()">
+    </form>
+</body>
+<script>
+    $("#gform").submit(function(){
+            alert(42652345)
+        })
+    function btn() {
+        console.log($("#gform"))
+        $("#gform").submit()
+    }
+</script>
+
+</html>
