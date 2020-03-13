@@ -1,22 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>前中后序遍历</title>
 </head>
+
 <body>
-    <h1>144</h1>20200308
+    <h1>144二叉树的前序遍历</h1>20200308
     <script>
+        let tree = {
+            val: 1,
+            left: {
+                val: 2,
+                left: {
+                    val: 4
+                },
+                right: {
+                    val: 5
+                }
+            },
+            right: {
+                val: 3,
+                right: {
+                    val: 6
+                }
+            }
+        };
+        // 非递归
+        var preorderTraversal = function (root) {
+            let res = [];
+            if (root == null) {
+                return res;
+            }
+            let queen = [];
+            queen.push(root);
+            while (queen.length !== 0) {
+                let node = queen.pop();
+                res.push(node.val);
+                if (node.right != null) queen.push(node.right)
+                if (node.left != null) queen.push(node.left)
+            }
+            return res;
+        };
+        console.log(preorderTraversal(tree))
 
     </script>
-    <h1>145</h1>20200309
+    <h1>145二叉树的后序遍历</h1>20200309
     <script>
-
+        var postorderTraversal = function (root) {
+            let res = [];
+            if (root === null) return res;
+            let queen = [];
+            queen.push(root);
+            while (queen.length !== 0) {
+                let node = queen.pop();
+                res.unshift(node.val);
+                if (node.left != null) queen.push(node.left)
+                if (node.right != null) queen.push(node.right)
+            }
+            return res;
+        };
+        console.log(postorderTraversal(tree));
     </script>
-    <h1>94</h1>20200309
+    <h1>94二叉树的中序遍历</h1>20200309
     <script>
-
+        var inorderTraversal = function (root) {
+            let res = [];
+            if (root === null) return res;
+            let queen = [];
+            let cur = root;
+            while (cur != null || queen.length !== 0) {
+                while(cur != null){
+                    console.log(cur)
+                    queen.push(cur)
+                    cur = cur.left;
+                }
+                let node = queen.pop();
+                res.push(node.val);
+                cur = node.right;
+            }
+            return res;
+        };
+        console.log(inorderTraversal(tree))
     </script>
 </body>
+
 </html>
