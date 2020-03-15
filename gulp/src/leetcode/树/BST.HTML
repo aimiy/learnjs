@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BST</title>
 </head>
+
 <body>
-    <h1>669</h1>20200310
+    <h1>669修剪二叉搜索树</h1>20200310
     <script>
+        let tree = {
+            val: 3,
+            left: {
+                val: 0,
+                left: {
+                    val: 2,
+                    left: {
+                        val: 1
+                    }
+                },
+                right: {
+                    val: 1
+                }
+            },
+            right: {
+                val: 4
+            }
+        };
+        var trimBST = function (root, L, R) {
+            if(root == null) return null;
+            if(root.val < L) return trimBST(root.right,L,R);
+            if(root.val > R) return trimBST(root.left,L,R);
+            root.left = trimBST(root.left,L,R);
+            root.right = trimBST(root.right,L,R);
+            return root;
+        };
+        console.log(trimBST(tree, 1, 3))
 
     </script>
     <h1>230</h1>20200310
@@ -55,4 +84,5 @@
 
     </script>
 </body>
+
 </html>
