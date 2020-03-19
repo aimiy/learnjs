@@ -41,7 +41,7 @@
 
     </script> -->
     <h1>230 二叉搜索树中第K小的元素</h1>20200310
-    <script>
+    <!-- <script>
         let tree = {
             val: 3,
             left: {
@@ -73,16 +73,59 @@
             }
         };
         console.log(kthSmallest(tree, 1))
-    </script>
-    <h1>538</h1>20200311
-    <script>
+    </script> -->
+    <h1>538把二叉搜索树转换为累加树</h1>20200311
+    <!-- <script>
+        let tree = {
+            val: 5,
+            left: {
+                val: 2
+            },
+            right: {
+                val: 13
+            }
+        };
+        // 盲写成功
+        var convertBST = function (root) {
+            if (root == null) return null;
+            let stack = [];
+            let num = 0;
+            let cur = root;
+            while (stack.length !== 0 || cur != null) {
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.right;
+                }
+                let node = stack.pop();
+                num += node.val;
+                node.val = num;
+                // console.log(node)
+                if (node.left) cur = node.left;
+            }
+            return root;
+        };
+        console.log(convertBST(tree));
 
-    </script>
-    <h1>235</h1>20200311
-    <script>
-
-    </script>
-    <h1>236</h1>20200312
+    </script> -->
+    <h1>235二叉搜索树的最近公共祖先</h1>20200311
+    <!-- <script>
+        var lowestCommonAncestor = function (root, p, q) {
+            if(root == null) return null;
+            let node = root;
+            while(node != null){
+                let pval = p.val;
+                let qval = q.val;
+                if(node.val > pval && node.val > qval){
+                    node = node.left;
+                }else if(node.val < pval && node.val < qval){
+                    node = node.right;
+                }else{
+                    return node;
+                }
+            }
+        };
+    </script> -->
+    <h1>236 二叉树的最近公共祖先 二叉树的最近公共祖先</h1>20200312
     <script>
 
     </script>
