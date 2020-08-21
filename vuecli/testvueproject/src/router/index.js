@@ -8,6 +8,9 @@ const routes = [
             { path: "/", component: resolve => require(['@/views/home/home'], resolve) }
         ]
     },
+    {
+        path:'/maequee',component:resolve => require(['@/views/marquee'],resolve)
+    }
 ]
 const router = new VueRouter({
     routes
