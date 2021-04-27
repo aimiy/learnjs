@@ -11,6 +11,9 @@ const routes = [
             { path: "/homeDetail2", component: resolve => require(['@/views/home/homeDetail2'], resolve) },
         ]
     },
+    {
+        path:'/maequee',component:resolve => require(['@/views/marquee'],resolve)
+    }
 ]
 const router = new VueRouter({
     routes
